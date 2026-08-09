@@ -1,6 +1,7 @@
 # Praise Ojerinola — Portfolio Website
 
 [![AWS Certified Data Engineer](https://img.shields.io/badge/AWS-Certified%20Data%20Engineer%20Associate-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://www.credly.com/badges/53369df2-187c-4b08-9ed8-18911445242d/public_url)
+[![AWS Amplify Hosting](https://img.shields.io/badge/AWS-Amplify%20Hosting-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=FF9900)](AWS_DEPLOYMENT.md)
 [![MSc Software Engineering](https://img.shields.io/badge/MSc-Software%20Engineering%20(Distinction)-00F2FE?style=for-the-badge&logo=academic&logoColor=black)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4FACFE.svg?style=for-the-badge)](LICENSE)
 
