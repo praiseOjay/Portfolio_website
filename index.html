@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praise Ojerinola | AWS Certified Data Engineer & Software Engineer</title>
+    <meta name="description" content="Portfolio of Praise Ojerinola - AWS Certified Data Engineer (Associate) and Software Engineering Master's Graduate (Distinction) specializing in Python ETL pipelines, Cloud AWS, Java, PHP, and Mobile App Development.">
+    <meta name="keywords" content="Praise Ojerinola, Data Engineer, Software Engineer, AWS Certified Data Engineer, Python, PySpark, Power BI, Java, React Native, Flutter, Salford UK">
+    <meta property="og:title" content="Praise Ojerinola | AWS Certified Data Engineer & Software Engineer">
+    <meta property="og:description" content="Explore data pipelines, cloud architecture, mobile apps, and software projects by Praise Ojerinola.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Background Interactivity Canvas & Glow Orbs -->
+    <canvas id="canvas-bg"></canvas>
+    <div class="glow-sphere glow-sphere-1"></div>
+    <div class="glow-sphere glow-sphere-2"></div>
+
+    <!-- Scroll Progress Indicator Bar -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Fixed Header & Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#hero" class="logo">
+                <div class="logo-icon">PO</div>
+                <span>Praise Ojerinola<span class="gradient-text">.dev</span></span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Contact Me
+                </a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge-status">
+                        <span class="status-dot"></span>
+                        <span id="status-text">AWS Certified Data Engineer • MSc Distinction</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text" id="profile-name">Praise Ojerinola</span><br>
+                        <span class="typing-text" id="typing-text">AWS Certified Data Engineer</span>
+                    </h1>
+
+                    <p class="hero-description" id="profile-tagline">
+                        Building enterprise-scale data pipelines, cloud solutions, and full-stack digital applications.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            Explore Projects <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/praise-ojerinola-4125311b6" target="_blank" class="btn btn-secondary">
+                            LinkedIn Profile <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+
+                    <div class="hero-stats" id="hero-stats-container">
+                        <div class="stat-item">
+                            <div class="stat-header">
+                                <i class="fas fa-graduation-cap stat-icon"></i>
+                                <span class="stat-number">Distinction</span>
+                            </div>
+                            <span class="stat-label">MSc Qualification</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header">
+                                <i class="fab fa-aws stat-icon"></i>
+                                <span class="stat-number">DEA-C01</span>
+                            </div>
+                            <span class="stat-label">AWS Data Engineer</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header">
+                                <i class="fas fa-award stat-icon"></i>
+                                <span class="stat-number">8+</span>
+                            </div>
+                            <span class="stat-label">Certifications</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header">
+                                <i class="fas fa-code stat-icon"></i>
+                                <span class="stat-number">Full-Stack</span>
+                            </div>
+                            <span class="stat-label">Python • Java • PHP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="avatar-wrapper">
+                        <img src="assets/images/praise_portrait.jpg" alt="Praise Ojerinola" class="avatar-img" id="profile-avatar">
+                    </div>
+
+                    <div class="floating-badge floating-badge-1">
+                        <div class="badge-icon"><i class="fab fa-aws"></i></div>
+                        <div>
+                            <div>AWS Certified</div>
+                            <small style="color: var(--text-muted);">Data Engineer Associate</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-badge floating-badge-2">
+                        <div class="badge-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <div>MSc Software Eng</div>
+                            <small style="color: var(--text-muted);">Distinction • Univ of Salford</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">About Me</span>
+                    <h2 class="section-title">Driven Data & Software Engineer</h2>
+                    <p class="section-description">Combining academic excellence (MSc Distinction) with hands-on AWS cloud data engineering and full-stack software development.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3 style="font-size: 1.6rem; margin-bottom: 16px;">Professional Summary</h3>
+                        <div class="about-text">
+                            <p id="profile-bio">
+                                Results-driven Software Engineering Master's graduate (Distinction) and AWS Certified Data Engineer (Associate). Expert in Python, Java, C#, PHP, SQL, React Native, and Flutter, with hands-on experience designing end-to-end ETL data pipelines, Power BI dashboards, and secure web & mobile applications.
+                            </p>
+                            <p>
+                                Proactive, adaptable team player with a passion for continuous learning, solid software architecture, and delivering secure, high-performance digital systems for clients and stakeholders.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <h3 style="font-size: 1.6rem; margin-bottom: 24px;">Core Competencies</h3>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fas fa-database"></i></div>
+                                <div>
+                                    <div class="highlight-title">Data Engineering</div>
+                                    <div class="highlight-desc">Python, ETL, PySpark & Streamlit</div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fab fa-aws"></i></div>
+                                <div>
+                                    <div class="highlight-title">AWS Cloud Services</div>
+                                    <div class="highlight-desc">AWS Certified Data Engineer</div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
+                                <div>
+                                    <div class="highlight-title">Data Analytics & AI</div>
+                                    <div class="highlight-desc">Power BI, Pandas, Scikit-learn, LLMs</div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fas fa-code"></i></div>
+                                <div>
+                                    <div class="highlight-title">Full-Stack & Mobile</div>
+                                    <div class="highlight-desc">PHP, Symfony, Flutter, React Native</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Academic Background</span>
+                    <h2 class="section-title">Education & Bootcamps</h2>
+                    <p class="section-description">Master's degree, Bachelor's degree, and intensive specialized technical bootcamps.</p>
+                </div>
+
+                <div class="about-grid" id="education-grid">
+                    <!-- Education items loaded dynamically from JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Credentials</span>
+                    <h2 class="section-title">Professional Certifications</h2>
+                    <p class="section-description">Verified certifications across Cloud, Data Engineering, AI, Power BI, and Security.</p>
+                </div>
+
+                <div class="skills-grid" id="certifications-grid">
+                    <!-- Certifications loaded dynamically from JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Technical Proficiency</span>
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-description">Programming languages, frameworks, cloud services, and tools in my engineering stack.</p>
+                </div>
+
+                <div class="skills-filter" id="skills-filter-container">
+                    <button class="filter-btn active" data-filter="all">All Skills</button>
+                    <button class="filter-btn" data-filter="data">Data Engineering</button>
+                    <button class="filter-btn" data-filter="ai">AI / Data Science</button>
+                    <button class="filter-btn" data-filter="backend">Backend & Languages</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Dev</button>
+                    <button class="filter-btn" data-filter="devops">DevOps & Cloud</button>
+                </div>
+
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Skills dynamically loaded from JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Showcase Section -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Portfolio</span>
+                    <h2 class="section-title">Projects & Case Studies</h2>
+                    <p class="section-description">Data pipelines, Power BI dashboards, web apps, mobile apps, and game development projects.</p>
+                </div>
+
+                <div class="skills-filter" id="projects-filter-container">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="data">Data Engineering</button>
+                    <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="filter-btn" data-filter="backend">Software / Java</button>
+                </div>
+
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects dynamically loaded from JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Professional History</span>
+                    <h2 class="section-title">Work Experience</h2>
+                    <p class="section-description">Hands-on experience in automated fulfillment operations and engineering systems.</p>
+                </div>
+
+                <div class="timeline" id="experience-timeline">
+                    <!-- Experience rendered dynamically from JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Let's Connect & Work Together</h2>
+                    <p class="section-description">Open to full-time data engineering, cloud, and software engineering opportunities.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info-card">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 24px;">Contact Information</h3>
+
+                        <div class="contact-method">
+                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="method-label">Direct Email</div>
+                                <div class="method-val" id="email-text">ojerinolapraise@gmail.com</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <div class="method-label">Phone</div>
+                                <div class="method-val">+44 7478 358217</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <div class="method-label">Location</div>
+                                <div class="method-val" id="profile-location">Salford, England, United Kingdom</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 24px;">
+                            <button class="btn btn-secondary" id="copy-email-btn" style="width: 100%; justify-content: center;">
+                                <i class="fas fa-copy"></i> Copy Email Address
+                            </button>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/praise-ojerinola-4125311b6" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/praiseOjay" target="_blank" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://hyperiondev.com/portfolio/PO25010016717/" target="_blank" class="social-btn" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                            <a href="mailto:ojerinolapraise@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-paper-plane"></i></a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="contact-name">Your Name</label>
+                            <input type="text" id="contact-name" class="form-control" placeholder="Jane Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact-email">Your Email Address</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="jane@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact-subject">Subject</label>
+                            <input type="text" id="contact-subject" class="form-control" placeholder="Opportunity / Project Inquiry" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact-message">Message</label>
+                            <textarea id="contact-message" class="form-control" placeholder="Hi Praise, I'd like to discuss an engineering role..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-text">
+                © <span id="current-year">2026</span> Praise Ojerinola. AWS Certified Data Engineer & Software Engineer. All rights reserved.
+            </div>
+
+            <a href="#hero" class="back-to-top" aria-label="Back to top">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Modal Overlay -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Project detail content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Popup -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle" style="color: var(--accent-emerald); font-size: 1.2rem;"></i>
+        <span id="toast-message">Action completed successfully.</span>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
