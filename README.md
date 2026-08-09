@@ -8,6 +8,22 @@ A modern, high-performance, dark-themed personal portfolio website built with Va
 
 ---
 
+## 📸 Website Previews
+
+### 🌟 Hero Section & Glassmorphic Stat Cards
+![Hero Section Preview](assets/images/screenshot_hero.png)
+
+### 📊 Projects & Case Studies Showcase
+![Projects Showcase Preview](assets/images/screenshot_projects.png)
+
+### 🔍 Interactive Project Detail Modal
+![Project Detail Modal Preview](assets/images/screenshot_modal.png)
+
+### ⚡ Technical Proficiency & Skills Grid
+![Skills Grid Preview](assets/images/screenshot_skills.png)
+
+---
+
 ## ✨ Features
 
 - **⚡ Interactive Canvas Particle Engine:** Custom canvas-based particle system with smooth physics and ambient dark mode styling.
