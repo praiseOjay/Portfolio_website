@@ -27,25 +27,29 @@ const portfolioConfig = {
             degree: "Bootcamp, Data Engineering",
             institution: "Digital Futures",
             period: "Sept 2025 - Dec 2025",
-            details: "Completed intensive 12-week data engineering bootcamp covering Python, SQL, ETL pipelines, AWS cloud technologies, and PySpark. Achieved AWS Certified Data Engineer - Associate (DEA-C01) certification."
+            result: "AWS Certified (DEA-C01)",
+            details: "Completed an intensive 12-week data engineering bootcamp covering Python programming, SQL, ETL processes, data pipelines, AWS cloud technologies, and Big Data tools (PySpark). Successfully achieved AWS Certified Data Engineer - Associate certification (January 2026), demonstrating proficiency in designing, building, and maintaining data engineering solutions on AWS."
         },
         {
-            degree: "Bootcamp, Data Science (97% Grade Average)",
-            institution: "Hyperion Dev (University of Manchester)",
+            degree: "Bootcamp, Data Science",
+            institution: "Hyperion Dev",
             period: "Jan 2025 - Apr 2025",
-            details: "Mastered data science libraries (NumPy, pandas, scikit-learn), machine learning concepts, statistical modelling, and predictive linear regression."
+            result: "97% Grade Average",
+            details: "The Data Science bootcamp covers Python, probability, statistics, data science libraries and fundamental machine-learning concepts. Achieved an overall grade average of 97% for the bootcamp tasks. Mastered Python programming within four months, enhancing coding skills and efficiency in data manipulation and analysis. Acquired hands-on experience with key data science libraries, including NumPy, pandas, and scikit-learn."
         },
         {
-            degree: "Master's in Software Engineering (Distinction)",
+            degree: "Master's, Software Engineering",
             institution: "University of Salford",
             period: "Sept 2023 - Dec 2024",
-            details: "GPA: 180.0. Focused on Agile methodologies, software architecture, security, and a dissertation comparing Flutter vs React Native cross-platform performance."
+            result: "Distinction",
+            details: "Mastered advanced concepts in Lean and Agile methodologies, large-scale software engineering, and cutting-edge software architecture and security practices. My Dissertation focused on a comparative analysis of Flutter and React Native for small-scale mobile application development, showcasing proficiency in cross-platform development techniques."
         },
         {
-            degree: "Bachelor's in Computer Science",
+            degree: "Bachelor's, Computer Science",
             institution: "University of Salford",
             period: "Sept 2020 - June 2023",
-            details: "GPA: 360.0. Database systems, AI & Data Mining, Client-Server systems. Year project: Supercharged Android fitness mobile application."
+            result: "Upper Second Class (2:1)",
+            details: "Experienced in web development and mobile application design with a focus on projects that apply my knowledge effectively. I have studied modules such as Database Systems, AI & Data Mining, and Client-server systems. For my year project, I created an Android fitness application that showcased my skills in full-stack development and user-centred design."
         }
     ],
     certifications: [

@@ -208,13 +208,26 @@ function renderEducation() {
     if (!container) return;
 
     container.innerHTML = portfolioConfig.education.map(item => `
-        <div class="about-card" style="padding: 28px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-                <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary);">${item.degree}</h4>
-                <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary); background: rgba(0, 242, 254, 0.1); padding: 4px 10px; border-radius: 99px;">${item.period}</span>
+        <div class="education-card">
+            <div class="education-card-top">
+                <div class="education-card-header">
+                    <div>
+                        <div class="education-institution">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>${item.institution}</span>
+                        </div>
+                        <h3 class="education-degree">${item.degree}</h3>
+                    </div>
+                    <span class="education-period">${item.period}</span>
+                </div>
+                ${item.result ? `
+                    <div class="education-result-badge">
+                        <i class="fas fa-award"></i>
+                        <span>${item.result}</span>
+                    </div>
+                ` : ''}
             </div>
-            <div style="color: var(--accent-secondary); font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">${item.institution}</div>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">${item.details}</p>
+            <p class="education-details">${item.details}</p>
         </div>
     `).join('');
 }
