@@ -116,6 +116,15 @@ const portfolioConfig = {
             location: "Salford, England, United Kingdom",
             category: "data",
             image: "assets/images/project_powerbi_global_ai_education.png",
+            gallery: [
+                { title: "Overview", src: "assets/images/project_ai_education_overview.png" },
+                { title: "Urban vs Rural Divide", src: "assets/images/project_ai_education_urban_rural.png" },
+                { title: "Government Policy Impact", src: "assets/images/project_ai_education_government_policy.png" },
+                { title: "Gender Gap Tracker", src: "assets/images/project_ai_education_gender_gap.png" },
+                { title: "Tool Market Share", src: "assets/images/project_ai_education_tool_market_share.png" },
+                { title: "Australia Trends", src: "assets/images/project_ai_education_australia_trends.png" },
+                { title: "Urban Rural Gap", src: "assets/images/project_ai_education_country_gap.png" }
+            ],
             summary: "Power BI project investigating AI adoption within global education across 10 countries and 5 regions, tracking student/teacher usage and socio-demographic indicators.",
             fullDescription: "This Power BI project investigates how Artificial Intelligence has been adopted within global education systems over an 11-year period (2015–2026). The analysis spans 10 countries across 5 regions: North America, Europe, Asia, South America, and Africa and tracks student usage, teacher usage, school adoption rates, policy development, and socio-demographic indicators such as the urban/rural divide and gender gap.",
             tags: ["Power BI", "Data Engineering", "DAX", "Data Analytics", "Global AI Trends"],

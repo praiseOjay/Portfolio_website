@@ -395,8 +395,27 @@ function openProjectModal(projectId) {
     const hasGithub = project.githubUrl && project.githubUrl.trim() !== "";
     const hasLive = project.liveUrl && project.liveUrl.trim() !== "" && project.liveUrl !== project.githubUrl;
 
+    const hasGallery = project.gallery && project.gallery.length > 0;
+    const initialImage = hasGallery ? project.gallery[0].src : project.image;
+
+    const imageSectionHtml = hasGallery ? `
+        <div class="modal-gallery-wrapper">
+            <div class="modal-gallery-main">
+                <img src="${initialImage}" alt="${project.title}" class="modal-image" id="modal-primary-image">
+            </div>
+            <div class="modal-gallery-thumbnails">
+                ${project.gallery.map((g, idx) => `
+                    <button class="gallery-thumb-btn ${idx === 0 ? 'active' : ''}" data-src="${g.src}" title="${g.title}">
+                        <img src="${g.src}" alt="${g.title}">
+                        <span>${g.title}</span>
+                    </button>
+                `).join('')}
+            </div>
+        </div>
+    ` : `<img src="${project.image}" alt="${project.title}" class="modal-image">`;
+
     modalBody.innerHTML = `
-        <img src="${project.image}" alt="${project.title}" class="modal-image">
+        ${imageSectionHtml}
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
             <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-primary); background: rgba(0, 242, 254, 0.1); padding: 4px 10px; border-radius: 6px; font-weight: 600;">
                 <i class="fas fa-user-tag" style="margin-right: 6px;"></i> ${project.role || 'Developer'}
@@ -441,6 +460,24 @@ function openProjectModal(projectId) {
             </a>` : ''}
         </div>
     `;
+
+    if (hasGallery) {
+        modalBody.querySelectorAll('.gallery-thumb-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetSrc = btn.getAttribute('data-src');
+                const mainImg = modalBody.querySelector('#modal-primary-image');
+                if (mainImg) {
+                    mainImg.style.opacity = '0.3';
+                    setTimeout(() => {
+                        mainImg.src = targetSrc;
+                        mainImg.style.opacity = '1';
+                    }, 120);
+                }
+                modalBody.querySelectorAll('.gallery-thumb-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    }
 
     modalOverlay.classList.add('active');
 }
