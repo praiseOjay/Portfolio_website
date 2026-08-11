@@ -137,7 +137,13 @@ function renderProfileData() {
 
     if (nameEl) nameEl.textContent = p.name;
     if (taglineEl) taglineEl.textContent = p.tagline;
-    if (bioEl) bioEl.textContent = p.bio;
+    if (bioEl) {
+        if (Array.isArray(p.bio)) {
+            bioEl.innerHTML = p.bio.map(para => `<p>${para}</p>`).join('');
+        } else {
+            bioEl.innerHTML = `<p>${p.bio}</p>`;
+        }
+    }
     if (locationEl) locationEl.textContent = p.location;
     if (avatarEl) avatarEl.src = p.avatar;
     if (emailText) emailText.textContent = p.socials.email;

@@ -3,7 +3,11 @@ const portfolioConfig = {
         name: "Praise Ojerinola",
         title: "AWS Certified Data Engineer & Software Engineering Master's Graduate",
         tagline: "Building enterprise-scale data pipelines, cloud solutions, and full-stack digital applications.",
-        bio: "Results-driven Software Engineering Master's graduate (Distinction) and AWS Certified Data Engineer (Associate). Expert in Python, Java, C#, PHP, SQL, React Native, and Flutter, with hands-on experience designing end-to-end ETL data pipelines, Power BI dashboards, and secure web & mobile applications.",
+        bio: [
+            "Developed a production-grade Python ETL pipeline with unit, integration, and end-to-end test coverage, comprehensive logging, and automated code quality checks, turning a messy fitness dataset into a clean, tested pipeline with a Streamlit dashboard. Building a full-stack marketplace application, developing cross-platform Flutter apps, and working daily alongside large-scale automated systems at Amazon have all reinforced the same principle: proper testing, clear documentation, and a practical approach are what separate code that works in a demo from software that holds up in production.",
+            "I work across Python, SQL, PySpark, and AWS in data engineering, PHP, Symfony, and JavaScript in web application development, and Flutter/Dart in cross-platform mobile development. This is backed by an MSc in Software Engineering (Distinction) from the University of Salford and an AWS Certified Data Engineer – Associate certification, both built on practical implementation across real projects rather than theory alone.",
+            "Looking for a role in software development, data engineering, or the intersection of both, where I can apply these skills directly. Open to full-time or contract-based positions."
+        ],
         location: "Salford, England, United Kingdom",
         phone: "+44 7478 358217",
         status: "UK Citizen • Open to Relocation • Ready for full-time roles",
