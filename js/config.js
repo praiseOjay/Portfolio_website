@@ -178,7 +178,7 @@ const portfolioConfig = {
             summary: "Modern, fully responsive web platform built for Connect Talent CIO (Registered Charity No. 1165973) using PHP, Tailwind CSS, and robust web security standards.",
             fullDescription: "The Connect Talent CIO website is a modern, fully responsive digital platform designed to advance digital inclusion, accredited skills development, and community support for residents across Salford and Greater Manchester. Built using PHP, Tailwind CSS, and robust web security standards, the platform showcases the charity's mission (Registered Charity No. 1165973) while enabling seamless community interaction through intuitive popup forms for volunteering, device and financial donation pledges, resident referrals, and corporate partnership inquiries.",
             tags: ["PHP", "Tailwind CSS", "Web Security", "Responsive Design", "Front-end"],
-            liveUrl: "https://www.connect-talent.org/",
+            liveUrl: "https://connect-talent.org/",
             githubUrl: "",
             featured: true,
             metrics: ["Live Production Charity Portal", "Volunteering & Donation Pledges", "Community Referrals"],
