@@ -608,14 +608,65 @@ function initContactForm() {
     const copyEmailBtn = document.getElementById('copy-email-btn');
 
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
+            const submitBtn = document.getElementById('contact-submit-btn') || form.querySelector('button[type="submit"]');
+            const nameInput = document.getElementById('contact-name');
+            const emailInput = document.getElementById('contact-email');
+            const subjectInput = document.getElementById('contact-subject');
+            const messageInput = document.getElementById('contact-message');
 
-            if (name && email) {
-                showToast(`Thank you, ${name}! Your message has been sent successfully.`);
+            const name = nameInput ? nameInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
+            const subject = subjectInput ? subjectInput.value.trim() : '';
+            const message = messageInput ? messageInput.value.trim() : '';
+
+            if (!name || !email || !message) {
+                showToast("Please fill in all required fields.");
+                return;
+            }
+
+            const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Send Message <i class="fas fa-paper-plane"></i>';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `Sending... <i class="fas fa-spinner fa-spin"></i>`;
+            }
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/ojerinolapraise@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        _subject: subject || `Portfolio Contact from ${name}`,
+                        message: message,
+                        _captcha: "false"
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && (data.success === "true" || data.success === true)) {
+                    showToast(`Thank you, ${name}! Your message has been sent successfully.`);
+                    form.reset();
+                } else {
+                    throw new Error(data.message || 'Form submission failed');
+                }
+            } catch (err) {
+                console.warn("AJAX FormSubmit error, falling back to mailto link:", err);
+                const mailtoUrl = `mailto:ojerinolapraise@gmail.com?subject=${encodeURIComponent(subject || `Portfolio Contact from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                window.location.href = mailtoUrl;
+                showToast(`Opening your mail app to complete sending...`);
                 form.reset();
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
             }
         });
     }
