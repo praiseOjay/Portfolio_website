@@ -74,6 +74,7 @@ Enterprise-grade, event-driven serverless data pipeline and real-time analytics 
 
 ### Data Engineering Capstone Project
 Comprehensive Python-based ETL capstone solution with multi-stage cleaning, Parquet storage, and an interactive Streamlit dashboard.
+- **Live Demo:** [Streamlit Dashboard](https://data-engineering-capstone-project.streamlit.app/)
 - **GitHub:** [capstone_project](https://github.com/praiseOjay/capstone_project)
 
 ### Advert Marketplace Website

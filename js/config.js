@@ -127,7 +127,7 @@ const portfolioConfig = {
             summary: "Comprehensive Python-based ETL capstone solution focused on fitness statistics analysis, featuring multi-stage cleaning, Parquet storage, and an interactive Streamlit dashboard.",
             fullDescription: "This is a comprehensive Python-based ETL (Extract, Transform, Load) capstone project that demonstrates a complete data engineering solution focused on fitness statistics analysis. The project extracts fitness data from CSV sources, performs multi-stage data cleaning and enrichment, loads data into structured formats (CSV and Parquet), and provides interactive visualizations through a Streamlit dashboard. It emphasizes professional development practices including modular architecture, comprehensive testing (unit, integration, component, and E2E tests), code quality standards (flake8, sqlfluff), and structured logging throughout the pipeline.",
             tags: ["Python", "ETL Pipeline", "PySpark", "Streamlit", "Parquet", "Pytest", "Data Engineering"],
-            liveUrl: "https://github.com/praiseOjay/capstone_project",
+            liveUrl: "https://data-engineering-capstone-project.streamlit.app/",
             githubUrl: "https://github.com/praiseOjay/capstone_project",
             featured: true,
             metrics: ["Modular ETL Architecture", "Parquet & CSV Storage", "Streamlit Dashboard"],
