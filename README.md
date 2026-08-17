@@ -66,7 +66,10 @@ Portfolio_website/
 ## 🚀 Featured Projects
 
 ### AWS Serverless Data Pipeline & Analytics Platform
+
 Enterprise-grade, event-driven serverless data pipeline and real-time analytics platform built on AWS using TDD and Infrastructure as Code (AWS SAM). Features Step Functions orchestration, dual-engine storage (S3 Parquet + DynamoDB), Athena SQL querying, and an interactive Chart.js analytics dashboard.
+
+- **Live Demo:** [AWS Amplify Dashboard](https://dev.d1ge4mev7768g0.amplifyapp.com/)
 - **GitHub:** [aws-serverless-data-pipeline](https://github.com/praiseOjay/aws-serverless-data-pipeline)
 
 ### Data Engineering Capstone Project
