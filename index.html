@@ -361,6 +361,13 @@
                     <form class="contact-form" id="contact-form" action="https://formsubmit.co/ojerinolapraise@gmail.com" method="POST">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
+
+                        <!-- Honeypot anti-spam field - hidden from real users -->
+                        <div class="form-group honeypot-field" aria-hidden="true">
+                            <label class="form-label" for="contact-website">Website</label>
+                            <input type="text" id="contact-website" name="website" class="form-control" tabindex="-1" autocomplete="off">
+                        </div>
+
                         <div class="form-group">
                             <label class="form-label" for="contact-name">Your Name</label>
                             <input type="text" id="contact-name" name="name" class="form-control" placeholder="Jane Doe" required>

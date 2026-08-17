@@ -621,6 +621,15 @@ function initContactForm() {
             const subject = subjectInput ? subjectInput.value.trim() : '';
             const message = messageInput ? messageInput.value.trim() : '';
 
+            // Honeypot anti-spam check - if the hidden field is filled, silently reject
+            const honeypotInput = document.getElementById('contact-website');
+            if (honeypotInput && honeypotInput.value.trim() !== '') {
+                // Bot detected - fake success to avoid alerting the bot
+                showToast("Thank you! Your message has been sent successfully.");
+                form.reset();
+                return;
+            }
+
             if (!name || !email || !message) {
                 showToast("Please fill in all required fields.");
                 return;

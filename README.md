@@ -32,6 +32,7 @@ A modern, high-performance, dark-themed personal portfolio website built with Va
 - **🔍 Rich Project Detail Modals:** Uncropped, aspect-ratio preserved project modal overlays featuring role badges, metrics, architectural features, GitHub repository links, and live deployment URLs.
 - **💎 Glassmorphic Design System:** Sleek dark glassmorphic cards, glowing badges, vibrant HSL gradients, smooth micro-interactions, and custom typography (*Outfit*, *Plus Jakarta Sans*, *Fira Code*).
 - **📜 Verified Certifications & Education:** Direct Credly credential verification for AWS Certified Data Engineer (DEA-C01), Google AI Professional, IBM Agile Explorer, and University of Salford degrees.
+- **🛡️ Honeypot Anti-Spam Protection:** Hidden honeypot field in the contact form that catches automated bot submissions while remaining invisible to real users.
 
 ---
 
@@ -40,6 +41,7 @@ A modern, high-performance, dark-themed personal portfolio website built with Va
 - **Core Technologies:** HTML5, CSS3 (Vanilla Design System), Modern JavaScript (ES6+)
 - **UI Components:** Custom Glassmorphism, FontAwesome 6, Google Fonts
 - **Data Configuration:** Centralized `portfolioConfig` architecture (`js/config.js`)
+- **Anti-Spam:** Honeypot field with CSS hiding and JavaScript validation
 
 ---
 
@@ -50,14 +52,35 @@ Portfolio_website/
 ├── assets/
 │   └── images/          # Project screenshots, portrait photos, and icons
 ├── css/
-│   └── styles.css       # Core design system, tokens, layout, and modal styles
+│   └── styles.css       # Core design system, tokens, layout, modal, and honeypot styles
 ├── js/
 │   ├── config.js        # Central portfolio data (projects, skills, certs)
-│   └── main.js          # Component renderers, filters, canvas background
+│   └── main.js          # Component renderers, filters, canvas background, honeypot validation
 ├── index.html           # Main application HTML page
 ├── README.md            # Repository documentation
 └── LICENSE              # MIT License file
 ```
+
+---
+
+## 🚀 Featured Projects
+
+### AWS Serverless Data Pipeline & Analytics Platform
+Enterprise-grade, event-driven serverless data pipeline and real-time analytics platform built on AWS using TDD and Infrastructure as Code (AWS SAM). Features Step Functions orchestration, dual-engine storage (S3 Parquet + DynamoDB), Athena SQL querying, and an interactive Chart.js analytics dashboard.
+- **GitHub:** [aws-serverless-data-pipeline](https://github.com/praiseOjay/aws-serverless-data-pipeline)
+
+### Data Engineering Capstone Project
+Comprehensive Python-based ETL capstone solution with multi-stage cleaning, Parquet storage, and an interactive Streamlit dashboard.
+- **GitHub:** [capstone_project](https://github.com/praiseOjay/capstone_project)
+
+### Advert Marketplace Website
+Classifieds marketplace application built with PHP, Symfony, Doctrine ORM, and MySQL featuring full CRUD, search, pagination, and admin moderation.
+- **Live Demo:** [Marketplace (AWS)](https://jkjl56qvog.execute-api.eu-west-2.amazonaws.com/)
+- **GitHub:** [Marketplace_website](https://github.com/praiseOjay/Marketplace_website)
+
+### Global AI in Education Dashboard (2015–2026)
+Power BI project investigating AI adoption within global education across 10 countries and 5 regions.
+- **GitHub:** [Global_AI_in_Education](https://github.com/praiseOjay/Global_AI_in_Education)
 
 ---
 

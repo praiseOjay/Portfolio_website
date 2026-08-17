@@ -95,6 +95,28 @@ const portfolioConfig = {
     ],
     projects: [
         {
+            id: "aws-serverless-pipeline",
+            title: "AWS Serverless Data Pipeline & Analytics Platform",
+            role: "Data Engineer",
+            period: "Aug 2026 - Aug 2026",
+            location: "Salford, England, United Kingdom",
+            category: "data",
+            image: "assets/images/project_aws_serverless_pipeline.png",
+            summary: "Enterprise-grade, event-driven serverless data pipeline and real-time analytics platform built on AWS using TDD and Infrastructure as Code (AWS SAM), featuring Step Functions orchestration, dual-engine storage, and an interactive dashboard.",
+            fullDescription: "An enterprise-grade, event-driven serverless data pipeline and real-time analytics platform built on Amazon Web Services (AWS) using Test-Driven Development (TDD) and Infrastructure as Code (AWS SAM). The system orchestrates automated multi-stage telemetry ingestion, data validation, dual-engine storage (OLAP Columnar Parquet in S3 + OLTP Key-Value in DynamoDB), ad-hoc SQL querying via AWS Glue & Amazon Athena, and serves real-time insights through a serverless REST API to an interactive, dark-mode analytics dashboard.",
+            tags: ["AWS", "SAM", "Lambda", "Step Functions", "DynamoDB", "S3", "Athena", "Python", "TDD"],
+            liveUrl: "https://github.com/praiseOjay/aws-serverless-data-pipeline",
+            githubUrl: "https://github.com/praiseOjay/aws-serverless-data-pipeline",
+            featured: true,
+            metrics: ["100% TDD Coverage", "Dual-Engine Storage", "Real-Time Analytics Dashboard"],
+            keyFeatures: [
+                "AWS Step Functions state machine orchestrating multi-stage ingestion, validation, and transformation",
+                "Dual-engine storage: OLAP Parquet data lake in S3 + OLTP DynamoDB for low-latency queries",
+                "Interactive Chart.js analytics dashboard with KPI cards, multi-timeframe trends, and CSV export",
+                "100% test coverage with pytest & moto, automated CI/CD via GitHub Actions"
+            ]
+        },
+        {
             id: "capstone-etl-project",
             title: "Data Engineering Capstone Project",
             role: "Data Engineer",
@@ -241,7 +263,7 @@ const portfolioConfig = {
             summary: "Classifieds advert marketplace application built with PHP, Symfony, Doctrine ORM, and MySQL featuring full CRUD, search, pagination, and admin moderation.",
             fullDescription: "A web-based classifieds and advert marketplace application developed with PHP, Symfony, Doctrine ORM, and MySQL. It offers listing CRUD capabilities, category filtering, search, pagination, access control roles, and an administrative moderation panel.",
             tags: ["PHP", "Symfony", "Doctrine ORM", "MySQL", "Twig", "Full-Stack"],
-            liveUrl: "https://github.com/praiseOjay/Marketplace_website",
+            liveUrl: "https://jkjl56qvog.execute-api.eu-west-2.amazonaws.com/",
             githubUrl: "https://github.com/praiseOjay/Marketplace_website",
             featured: true,
             metrics: ["Full CRUD Functionality", "Role-Based Auth", "Admin Moderation Panel"],

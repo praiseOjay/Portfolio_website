@@ -1573,3 +1573,17 @@ footer {
         font-size: 2rem;
     }
 }
+
+/* --------------------------------------------------------------------------
+   Honeypot Anti-Spam Field - Hidden from real users
+   -------------------------------------------------------------------------- */
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
