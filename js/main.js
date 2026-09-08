@@ -173,8 +173,8 @@ function initTypingEffect() {
     const titles = [
         "AWS Certified Data Engineer",
         "Software Engineering Master's Graduate",
-        "Full-Stack & Cloud Developer",
-        "Data Science & AI Specialist"
+        "Junior Full-Stack Developer",
+        "Junior Data Engineer"
     ];
     let titleIdx = 0;
     let charIdx = 0;
