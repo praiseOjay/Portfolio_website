@@ -364,12 +364,8 @@ const portfolioConfig = {
             company: "Amazon",
             period: "Sept 2018 - Present",
             location: "Bolton, England, United Kingdom",
-            description: "Operating advanced automated inventory management and robotic fulfillment systems within a fast-paced technology environment.",
-            achievements: [
-                "Operate robotic automation systems, barcode scanners, and image recognition technology to maintain real-time inventory precision.",
-                "Maintain accurate real-time inventory tracking for order fulfillment and shipping processes.",
-                "Demonstrate rapid adaptability, operational efficiency, and complex problem-solving under strict SLAs."
-            ]
+            description: "I worked within the highly automated Amazon environment, using robotics, barcode scanners, and image recognition to keep the inventory up-to-date and ensure quick and accurate fulfilment of customers' orders. I became highly proficient working with people and in a fast-paced environment that requires order and precision, learning the ropes of one of the most advanced automated systems in the world.",
+            achievements: []
         }
     ]
 };

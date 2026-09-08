@@ -520,9 +520,11 @@ function renderExperience() {
                     <div class="timeline-period">${item.period}</div>
                 </div>
                 <p class="timeline-desc">${item.description}</p>
-                <ul class="timeline-achievements">
-                    ${item.achievements.map(a => `<li>${a}</li>`).join('')}
-                </ul>
+                ${item.achievements && item.achievements.length > 0 ? `
+                    <ul class="timeline-achievements">
+                        ${item.achievements.map(a => `<li>${a}</li>`).join('')}
+                    </ul>
+                ` : ''}
             </div>
         </div>
     `).join('');
