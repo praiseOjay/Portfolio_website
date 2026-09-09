@@ -105,7 +105,7 @@ const portfolioConfig = {
             summary: "Production-grade, event-driven serverless data pipeline and real-time analytics platform built on AWS using TDD and Infrastructure as Code (AWS SAM), featuring Step Functions orchestration, dual-engine storage, and an interactive dashboard.",
             fullDescription: "A production-level, event-driven, serverless data pipeline implemented on the AWS cloud platform in accordance with enterprise architecture principles. The application uses test-driven development and an infrastructure-as-code approach (AWS SAM) to design an automated data pipeline process that performs several stages of data ingestion and validation, saving the results of computation in two different data storage systems: the data warehouse (data lake) in the form of OLAP-column Parquet files (S3), and the OLTP key-value store (DynamoDB). The application features ad-hoc SQL queries and analysis through AWS Glue and Athena, and offers an interactive dashboard with time-based data visualisation using a serverless REST API.",
             tags: ["AWS", "SAM", "Lambda", "Step Functions", "DynamoDB", "S3", "Athena", "Python", "TDD"],
-            liveUrl: "https://dev.d1ge4mev7768g0.amplifyapp.com/",
+            liveUrl: "https://praiseojay.github.io/aws-serverless-data-pipeline/",
             githubUrl: "https://github.com/praiseOjay/aws-serverless-data-pipeline",
             featured: true,
             metrics: ["100% TDD Coverage", "Dual-Engine Storage", "Real-Time Analytics Dashboard"],
