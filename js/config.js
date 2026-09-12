@@ -8,8 +8,6 @@ const portfolioConfig = {
             "I can work across Python, SQL, PySpark, and AWS in data engineering, PHP, Symfony, and JavaScript in web application development, and Flutter/Dart in cross-platform mobile development. This is backed by an MSc in Software Engineering (Distinction) from the University of Salford and an AWS Certified Data Engineer – Associate certification, both built on practical implementation across real projects rather than theory alone.",
             "Looking for a role in software development, data engineering, or the intersection of both, where I can apply these skills directly. Open to full-time or contract-based positions."
         ],
-        location: "Salford, England, United Kingdom",
-        phone: "+44 7478 358217",
         status: "UK Citizen • Open to Relocation • Ready for full-time roles",
         avatar: "assets/images/praise_portrait.jpg",
         resumeUrl: "#",

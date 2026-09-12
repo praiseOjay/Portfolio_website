@@ -108,7 +108,6 @@ npx serve .
 ## 👨‍💻 About Praise Ojerinola
 
 - **Role:** AWS Certified Data Engineer & Software Engineering Master's Graduate (Distinction)
-- **Location:** Salford, England, United Kingdom
 - **Email:** [ojerinolapraise@gmail.com](mailto:ojerinolapraise@gmail.com)
 - **LinkedIn:** [linkedin.com/in/praise-ojerinola-4125311b6](https://linkedin.com/in/praise-ojerinola-4125311b6)
 - **GitHub:** [github.com/praiseOjay](https://github.com/praiseOjay)
