@@ -2,8 +2,8 @@
 window.cvData = {
   "profile": {
     "name": "Praise Ojerinola",
-    "title": "Software Engineer & Data Engineer",
-    "tagline": "I work across Python, SQL, PySpark, and AWS in data engineering, PHP, Symfony, and JavaScript in web application development, and Flutter/Dart in cross-platform mobile development.",
+    "title": "Praise Ojerinola",
+    "tagline": "Looking for a role in software development, data engineering, or the intersection of both, where I can apply these skills directly.",
     "bio": [
       "Developed a production-grade Python ETL pipeline with unit, integration, and end-to-end test coverage, comprehensive logging, and automated code quality checks, turning a messy fitness dataset into a clean, tested pipeline with a Streamlit dashboard.",
       "Building a full-stack marketplace application, developing cross-platform Flutter apps, and working daily alongside large-scale automated systems at Amazon have all reinforced the same principle: proper testing, clear documentation, and a practical approach are what separate code that works in a demo from software that holds up in production."
@@ -34,7 +34,6 @@ window.cvData = {
       "hyperion": "https://praiseojay.github.io/Portfolio_website/"
     },
     "titles": [
-      "Software Engineer",
       "Data Engineer",
       "Full-Stack Developer",
       "Mobile Developer"
@@ -56,14 +55,14 @@ window.cvData = {
       "institution": "Digital Futures",
       "period": "September 2025 to December 2025",
       "result": "",
-      "details": "Covered Python programming, SQL, ETL processes, data pipelines, AWS cloud technologies, and Big Data tools (PySpark)."
+      "details": "Covered Python programming, SQL, ETL processes, data pipelines, AWS cloud technologies, and Big Data tools (PySpark). Achieved AWS Certified Data Engineer - Associate certification (January 2026)."
     },
     {
       "degree": "Data Science Bootcamp",
       "institution": "Hyperion Dev (The University of Manchester)",
       "period": "January 2025 to April 2025",
       "result": "97% grade average",
-      "details": "Covered Python, probability, statistics, data science libraries, and fundamental machine-learning concepts."
+      "details": "Covered Python, probability, statistics, data science libraries, and fundamental machine-learning concepts. Completed three practical projects."
     },
     {
       "degree": "Software Engineering",
@@ -77,7 +76,7 @@ window.cvData = {
       "institution": "University of Salford",
       "period": "September 2020 to June 2023",
       "result": "Second Upper Class (2:1)",
-      "details": "Experienced in web development and mobile application design with a focus on projects that apply knowledge effectively."
+      "details": "Experienced in web development and mobile application design with a focus on projects that apply knowledge effectively. Studied modules such as Database Systems, AI & Data Mining, and Client-Server Systems."
     }
   ],
   "certifications": [
@@ -149,27 +148,22 @@ window.cvData = {
     },
     {
       "name": "AWS",
-      "category": "data",
+      "category": "devops",
       "details": ""
     },
     {
-      "name": "Power BI",
-      "category": "data",
+      "name": "Flutter",
+      "category": "mobile",
       "details": ""
     },
     {
-      "name": "Tableau",
-      "category": "data",
+      "name": "React Native",
+      "category": "mobile",
       "details": ""
     },
     {
-      "name": "Machine Learning",
-      "category": "ai",
-      "details": ""
-    },
-    {
-      "name": "Cybersecurity",
-      "category": "ai",
+      "name": "Kotlin",
+      "category": "mobile",
       "details": ""
     },
     {
@@ -183,53 +177,38 @@ window.cvData = {
       "details": ""
     },
     {
-      "name": "WordPress",
+      "name": "Java",
       "category": "backend",
       "details": ""
     },
     {
-      "name": "Flutter",
-      "category": "mobile",
-      "details": ""
-    },
-    {
-      "name": "Kotlin",
-      "category": "mobile",
-      "details": ""
-    },
-    {
-      "name": "Java",
-      "category": "mobile",
+      "name": "C/C++",
+      "category": "backend",
       "details": ""
     },
     {
       "name": "Unity",
-      "category": "mobile",
+      "category": "backend",
       "details": ""
     },
     {
-      "name": "C/C++",
-      "category": "devops",
+      "name": "Power BI",
+      "category": "data",
       "details": ""
     },
     {
-      "name": "C#",
-      "category": "devops",
+      "name": "Tableau",
+      "category": "data",
       "details": ""
     },
     {
-      "name": "Swift",
-      "category": "devops",
+      "name": "LLM",
+      "category": "ai",
       "details": ""
     },
     {
-      "name": "Linux/Unix",
-      "category": "devops",
-      "details": ""
-    },
-    {
-      "name": "Git",
-      "category": "devops",
+      "name": "Cybersecurity",
+      "category": "data",
       "details": ""
     },
     {
@@ -238,38 +217,13 @@ window.cvData = {
       "details": ""
     },
     {
-      "name": "Data Engineering",
-      "category": "data",
-      "details": ""
-    },
-    {
-      "name": "Software Engineering",
-      "category": "devops",
-      "details": ""
-    },
-    {
-      "name": "Web Development",
+      "name": "WordPress",
       "category": "backend",
       "details": ""
     },
     {
-      "name": "Microsoft Office",
-      "category": "devops",
-      "details": ""
-    },
-    {
-      "name": "Virtualisation",
-      "category": "devops",
-      "details": ""
-    },
-    {
-      "name": "Eclipse",
-      "category": "devops",
-      "details": ""
-    },
-    {
-      "name": "Jupyter Notebook",
-      "category": "data",
+      "name": "Firebase",
+      "category": "backend",
       "details": ""
     },
     {
@@ -283,23 +237,113 @@ window.cvData = {
       "details": ""
     },
     {
-      "name": "Firebase",
+      "name": "Adobe Photoshop",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "Adobe After Effects",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "Canva",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "PowerPoint/Keynote/Slides",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "Word/Pages/Docs",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "Excel/Numbers/Sheets",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "Git",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "GitBash",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "PowerShell",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "Linux/Unix",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "VirtualBox",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "VMware",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "Maven",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "OpenAI",
+      "category": "ai",
+      "details": ""
+    },
+    {
+      "name": "Open WebUI",
+      "category": "ai",
+      "details": ""
+    },
+    {
+      "name": "TurboLLM",
+      "category": "ai",
+      "details": ""
+    },
+    {
+      "name": "Design Patterns",
       "category": "backend",
       "details": ""
     },
     {
-      "name": "MongoDB",
-      "category": "data",
+      "name": "Data Structures & Algorithms",
+      "category": "backend",
       "details": ""
     },
     {
-      "name": "Plotly",
-      "category": "data",
+      "name": "Software Testing",
+      "category": "devops",
       "details": ""
     },
     {
-      "name": "SpaCy",
-      "category": "ai",
+      "name": "Bootstrap",
+      "category": "backend",
+      "details": ""
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "backend",
+      "details": ""
+    },
+    {
+      "name": "XAMPP",
+      "category": "backend",
       "details": ""
     },
     {
@@ -308,18 +352,43 @@ window.cvData = {
       "details": ""
     },
     {
-      "name": "Inventory Management",
-      "category": "data",
-      "details": ""
-    },
-    {
-      "name": "Database Management System",
-      "category": "data",
-      "details": ""
-    },
-    {
-      "name": "Operating Systems",
+      "name": "Visual Studio Code",
       "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "Eclipse",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "Android Studio",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "Xcode",
+      "category": "devops",
+      "details": ""
+    },
+    {
+      "name": "iOS/Swift",
+      "category": "mobile",
+      "details": ""
+    },
+    {
+      "name": "Unreal Engine",
+      "category": "backend",
+      "details": ""
+    },
+    {
+      "name": "Jupyter Notebook",
+      "category": "data",
+      "details": ""
+    },
+    {
+      "name": "Microsoft Office",
+      "category": "data",
       "details": ""
     }
   ],
@@ -327,7 +396,7 @@ window.cvData = {
     {
       "role": "FC Associate",
       "company": "Amazon",
-      "period": "September 2018 to Present",
+      "period": "Present",
       "location": "Bolton, England, United Kingdom",
       "description": "Worked within the highly automated Amazon environment, using robotics, barcode scanners, and image recognition to keep the inventory up-to-date and ensure quick and accurate fulfilment of the customer’s orders. Became highly proficient working with people and in a fast-paced environment that requires order and precision, learning the ropes of one of the most advanced automated systems in the world.",
       "achievements": [
@@ -338,7 +407,7 @@ window.cvData = {
     {
       "role": "Front-End Developer",
       "company": "Connect Talent CIO",
-      "period": "July 2026 to August 2026",
+      "period": "July 2026 - August 2026",
       "location": "Salford, England, United Kingdom",
       "description": "The Connect Talent CIO website is a modern, fully responsive digital platform designed to advance digital inclusion, accredited skills development, and community support for residents across Salford and Greater Manchester. Built using PHP, Tailwind CSS, and robust web security standards, the platform showcases the charity’s mission (Registered Charity No 1169975) while enabling seamless community interaction through intuitive pop-up forms for volunteering, device and financial donation pledges, resident referrals, and corporate partnership inquiries.",
       "achievements": [
@@ -349,29 +418,29 @@ window.cvData = {
     {
       "role": "Full-Stack Developer",
       "company": "Connect Talent CRM",
-      "period": "June 2026 to August 2026",
+      "period": "June 2026 - August 2026",
       "location": "Salford, England, United Kingdom",
       "description": "A web-based call management system and customer relationship management (CRM) application developed using PHP, SQLite, and Tailwind CSS for Connect Talent CIO. The application handles call logging, customer relations, dashboard analytics, import/export functionalities, and user authentication.",
       "achievements": [
         "Developed a web-based call management system and CRM application using PHP and SQLite",
-        "Implemented user authentication and dashboard analytics"
+        "Handled call logging, customer relations, dashboard analytics, and user authentication"
       ]
     },
     {
       "role": "Data Engineer",
       "company": "UK Online Retail Sales Performance & Customer Insights (2009–2011)",
-      "period": "April 2026 to April 2026",
+      "period": "April 2026",
       "location": "Salford, England, United Kingdom",
       "description": "This Power BI dashboard provides a comprehensive analysis of UK online retail sales data spanning from 2009 to 2011. It delivers actionable insights into product demand, revenue performance, customer behaviour, and seasonal trends, enabling data-driven decision-making for retail stakeholders.",
       "achievements": [
-        "Created a Power BI dashboard for comprehensive analysis of UK online retail sales data",
-        "Delivered actionable insights into product demand, revenue performance, and customer behaviour"
+        "Provided a comprehensive analysis of UK online retail sales data spanning from 2009 to 2011",
+        "Delivered actionable insights into product demand, revenue performance, customer behaviour, and seasonal trends"
       ]
     },
     {
       "role": "Data Engineer",
       "company": "Global AI in Education Dashboard (2015–2026)",
-      "period": "April 2026 to April 2026",
+      "period": "April 2026",
       "location": "Salford, England, United Kingdom",
       "description": "This Power BI project explores the adoption trends of Artificial Intelligence in education at a global level. The study covers the period between 2015 and 2026 and involves ten countries. These countries belong to five world regions: North America, Europe, Asia, South America, and Africa. The report provides insights into the adoption rates of the technology among students, teachers, and schools. In addition, it sheds light on the policies affecting education and demographic variables such as the urban-rural divide and gender gaps.",
       "achievements": [
@@ -382,18 +451,18 @@ window.cvData = {
     {
       "role": "Data Engineer",
       "company": "Capstone Project",
-      "period": "December 2025 to December 2025",
+      "period": "December 2025",
       "location": "Salford, England, United Kingdom",
       "description": "A Python ETL Capstone Project that demonstrates an end-to-end data engineering workflow. The project ingests data in the form of CSV fitness-related files, applies a suite of transformations and conversions, and subsequently stores the resulting datasets in various formats such as CSV and Parquet, with visualisations generated in the form of a Streamlit dashboard. The code behind the project is well-structured and adheres to software engineering principles, and employs a range of testing strategies, including unit, integration, and end-to-end testing, as well as SQL and code quality testing using tools such as flake8 and sqlfluff and logging throughout the pipeline for debugging and monitoring purposes.",
       "achievements": [
         "Demonstrated an end-to-end data engineering workflow using Python ETL",
-        "Employed a range of testing strategies, including unit, integration, and end-to-end testing"
+        "Ingested data in the form of CSV fitness-related files and applied a suite of transformations and conversions"
       ]
     },
     {
       "role": "Full-Stack Developer",
       "company": "Connect Institute",
-      "period": "August 2025 to November 2025",
+      "period": "August 2025 - November 2025",
       "location": "Salford, England, United Kingdom",
       "description": "This project involves developing a website for Connect Institute using WordPress. Connect Institute is the training and education division of Connect International Resources, which provides a comprehensive range of courses from Further Education diplomas to postgraduate MSc and PhD degrees, all of which contribute to career progression and development.",
       "achievements": [
@@ -404,7 +473,7 @@ window.cvData = {
     {
       "role": "Full-Stack Developer",
       "company": "Connect International Resources",
-      "period": "April 2025 to July 2025",
+      "period": "April 2025 - July 2025",
       "location": "Salford, England, United Kingdom",
       "description": "The project entails developing a complete WordPress website for an organisation called Connect International Resources. Connect International Resources Limited (CIR) is a UK-based international consultancy agency based in Salford, Manchester. It is a premier resource connecting people worldwide to education, employment opportunities, as well as professional development resources in the UK and abroad.",
       "achievements": [
