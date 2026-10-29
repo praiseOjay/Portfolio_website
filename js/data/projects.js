@@ -8,8 +8,8 @@ window.portfolioProjects = [
     "location": "Salford, England, United Kingdom",
     "category": "data",
     "image": "assets/images/project_aws_serverless_pipeline.png",
-    "summary": "Enterprise-grade, event-driven serverless data pipeline and real-time analytics platform built on AWS using TDD and Infrastructure as Code (AWS SAM), featuring Step Functions orchestration, dual-engine storage, and an interactive dashboard.",
-    "fullDescription": "An enterprise-grade, event-driven serverless data pipeline and real-time analytics platform built on Amazon Web Services (AWS) using Test-Driven Development (TDD) and Infrastructure as Code (AWS SAM). The system orchestrates automated multi-stage telemetry ingestion, data validation, dual-engine storage (OLAP Columnar Parquet in S3 + OLTP Key-Value in DynamoDB), ad-hoc SQL querying via AWS Glue & Amazon Athena, and serves real-time insights through a serverless REST API to an interactive, dark-mode analytics dashboard.",
+    "summary": "Production-grade, event-driven serverless data pipeline and real-time analytics platform built on AWS using TDD and Infrastructure as Code (AWS SAM), featuring Step Functions orchestration, dual-engine storage, and an interactive dashboard.",
+    "fullDescription": "A production-level, event-driven, serverless data pipeline implemented on the AWS cloud platform in accordance with enterprise architecture principles. The application uses test-driven development and an infrastructure-as-code approach (AWS SAM) to design an automated data pipeline process that performs several stages of data ingestion and validation, saving the results of computation in two different data storage systems: the data warehouse (data lake) in the form of OLAP-column Parquet files (S3), and the OLTP key-value store (DynamoDB). The application features ad-hoc SQL queries and analysis through AWS Glue and Athena, and offers an interactive dashboard with time-based data visualisation using a serverless REST API.",
     "tags": [
       "AWS",
       "SAM",
@@ -21,7 +21,7 @@ window.portfolioProjects = [
       "Python",
       "TDD"
     ],
-    "liveUrl": "https://dev.d1ge4mev7768g0.amplifyapp.com/",
+    "liveUrl": "https://praiseojay.github.io/aws-serverless-data-pipeline/",
     "githubUrl": "https://github.com/praiseOjay/aws-serverless-data-pipeline",
     "featured": true,
     "metrics": [

@@ -206,8 +206,7 @@ function renderProfileData() {
     const setText = (id, text) => { const el = document.getElementById(id); if (el && text) el.textContent = text; };
     const setHref = (id, href) => { const el = document.getElementById(id); if (el && href) el.href = href; };
     const s = p.socials || {};
-    setText('contact-phone', p.phone);
-    setHref('contact-phone-link', p.phone ? `tel:${p.phone.replace(/\s+/g, '')}` : '');
+    // phone number and street-level location are deliberately not shown on the public site
     setHref('hero-linkedin', s.linkedin);
     setHref('social-linkedin', s.linkedin);
     setHref('social-github', s.github);
@@ -292,8 +291,8 @@ function initTypingEffect() {
     const titles = Array.isArray(fromCv) && fromCv.length ? fromCv : [
         "AWS Certified Data Engineer",
         "Software Engineering Master's Graduate",
-        "Full-Stack & Cloud Developer",
-        "Data Science & AI Specialist"
+        "Junior Full-Stack Developer",
+        "Junior Data Engineer"
     ];
     if (prefersReducedMotion) { typingEl.textContent = titles[0]; return; }
     let titleIdx = 0;
@@ -631,9 +630,11 @@ function renderExperience() {
                     <div class="timeline-period">${item.period}</div>
                 </div>
                 <p class="timeline-desc">${item.description}</p>
-                <ul class="timeline-achievements">
-                    ${item.achievements.map(a => `<li>${a}</li>`).join('')}
-                </ul>
+                ${item.achievements && item.achievements.length > 0 ? `
+                    <ul class="timeline-achievements">
+                        ${item.achievements.map(a => `<li>${a}</li>`).join('')}
+                    </ul>
+                ` : ''}
             </div>
         </div>
     `).join('');

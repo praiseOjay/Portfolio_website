@@ -4,14 +4,12 @@ const portfolioConfig = {
     "profile": {
         "name": "Praise Ojerinola",
         "title": "AWS Certified Data Engineer & Software Engineering Master's Graduate",
-        "tagline": "Building enterprise-scale data pipelines, cloud solutions, and full-stack digital applications.",
+        "tagline": "Building production-style data pipelines, cloud solutions, and full-stack digital applications using enterprise-grade tools and architecture patterns.",
         "bio": [
-            "Developed a production-grade Python ETL pipeline with unit, integration, and end-to-end test coverage, comprehensive logging, and automated code quality checks, turning a messy fitness dataset into a clean, tested pipeline with a Streamlit dashboard. Building a full-stack marketplace application, developing cross-platform Flutter apps, and working daily alongside large-scale automated systems at Amazon have all reinforced the same principle: proper testing, clear documentation, and a practical approach are what separate code that works in a demo from software that holds up in production.",
-            "I work across Python, SQL, PySpark, and AWS in data engineering, PHP, Symfony, and JavaScript in web application development, and Flutter/Dart in cross-platform mobile development. This is backed by an MSc in Software Engineering (Distinction) from the University of Salford and an AWS Certified Data Engineer – Associate certification, both built on practical implementation across real projects rather than theory alone.",
+            "Developed a production-grade Python ETL pipeline with unit, integration, and end-to-end test coverage, comprehensive logging, and automated code-quality checks that transformed a messy fitness dataset into a clean, tested pipeline with a Streamlit dashboard. Backed this up by building a full-stack marketplace application, developing a cross-platform Flutter app, and being exposed to large-scale automated systems at Amazon, all of which led me to the same conclusion: proper testing, documentation, and a practical approach are what differentiate code that works in a demo from code that can withstand the pressures of production.",
+            "I can work across Python, SQL, PySpark, and AWS in data engineering, PHP, Symfony, and JavaScript in web application development, and Flutter/Dart in cross-platform mobile development. This is backed by an MSc in Software Engineering (Distinction) from the University of Salford and an AWS Certified Data Engineer – Associate certification, both built on practical implementation across real projects rather than theory alone.",
             "Looking for a role in software development, data engineering, or the intersection of both, where I can apply these skills directly. Open to full-time or contract-based positions."
         ],
-        "location": "Salford, England, United Kingdom",
-        "phone": "+44 7478 358217",
         "status": "UK Citizen • Open to Relocation • Ready for full-time roles",
         "avatar": "assets/images/praise_portrait.jpg",
         "resumeUrl": "#",
@@ -228,12 +226,8 @@ const portfolioConfig = {
             "company": "Amazon",
             "period": "Sept 2018 - Present",
             "location": "Bolton, England, United Kingdom",
-            "description": "Operating advanced automated inventory management and robotic fulfillment systems within a fast-paced technology environment.",
-            "achievements": [
-                "Operate robotic automation systems, barcode scanners, and image recognition technology to maintain real-time inventory precision.",
-                "Maintain accurate real-time inventory tracking for order fulfillment and shipping processes.",
-                "Demonstrate rapid adaptability, operational efficiency, and complex problem-solving under strict SLAs."
-            ]
+            "description": "I worked within the highly automated Amazon environment, using robotics, barcode scanners, and image recognition to keep the inventory up-to-date and ensure quick and accurate fulfilment of customers' orders. I became highly proficient working with people and in a fast-paced environment that requires order and precision, learning the ropes of one of the most advanced automated systems in the world.",
+            "achievements": []
         }
     ]
 };
