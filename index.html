@@ -9,6 +9,10 @@
     <meta property="og:title" content="Praise Ojerinola | AWS Certified Data Engineer & Software Engineer">
     <meta property="og:description" content="Explore data pipelines, cloud architecture, mobile apps, and software projects by Praise Ojerinola.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/praise_portrait.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#0a0d16">
+    <link rel="icon" href="assets/images/praise_avatar.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +26,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#about" class="skip-link">Skip to content</a>
 
     <!-- Background Interactivity Canvas & Glow Orbs -->
     <canvas id="canvas-bg"></canvas>
@@ -35,8 +40,8 @@
     <header class="navbar" id="navbar">
         <div class="container navbar-container">
             <a href="#hero" class="logo">
-                <div class="logo-icon">PO</div>
-                <span>Praise Ojerinola<span class="gradient-text">.dev</span></span>
+                <div class="logo-icon" id="nav-initials">PO</div>
+                <span><span id="nav-name">Praise Ojerinola</span><span class="gradient-text">.dev</span></span>
             </a>
 
             <nav>
@@ -89,8 +94,11 @@
                         <a href="#projects" class="btn btn-primary">
                             Explore Projects <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="https://linkedin.com/in/praise-ojerinola-4125311b6" target="_blank" class="btn btn-secondary">
+                        <a href="https://linkedin.com/in/praise-ojerinola-4125311b6" target="_blank" rel="noopener" class="btn btn-secondary" id="hero-linkedin">
                             LinkedIn Profile <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-secondary" id="cv-download" download hidden>
+                            Download CV <i class="fas fa-file-arrow-down"></i>
                         </a>
                     </div>
 
@@ -332,7 +340,7 @@
                             <div class="method-icon"><i class="fas fa-phone"></i></div>
                             <div>
                                 <div class="method-label">Phone</div>
-                                <div class="method-val">+44 7478 358217</div>
+                                <div class="method-val"><a id="contact-phone-link" href="tel:+447478358217" style="color: inherit;"><span id="contact-phone">+44 7478 358217</span></a></div>
                             </div>
                         </div>
 
@@ -351,10 +359,10 @@
                         </div>
 
                         <div class="social-links">
-                            <a href="https://linkedin.com/in/praise-ojerinola-4125311b6" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://github.com/praiseOjay" target="_blank" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://hyperiondev.com/portfolio/PO25010016717/" target="_blank" class="social-btn" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
-                            <a href="mailto:ojerinolapraise@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-paper-plane"></i></a>
+                            <a id="social-linkedin" href="https://linkedin.com/in/praise-ojerinola-4125311b6" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a id="social-github" href="https://github.com/praiseOjay" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a id="social-site" href="https://hyperiondev.com/portfolio/PO25010016717/" target="_blank" rel="noopener" class="social-btn" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                            <a id="social-mail" href="mailto:ojerinolapraise@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-paper-plane"></i></a>
                         </div>
                     </div>
 
@@ -401,7 +409,7 @@
     <footer>
         <div class="container footer-container">
             <div class="footer-text">
-                © <span id="current-year">2026</span> Praise Ojerinola. AWS Certified Data Engineer & Software Engineer. All rights reserved.
+                © <span id="current-year">2026</span> <span id="footer-name">Praise Ojerinola</span>. <span id="footer-title">AWS Certified Data Engineer & Software Engineer</span>. All rights reserved.
             </div>
 
             <a href="#hero" class="back-to-top" aria-label="Back to top">
@@ -430,6 +438,8 @@
 
     <!-- JavaScript Files -->
     <script src="js/config.js"></script>
+    <script src="js/data/projects.js"></script>
+    <script src="js/data/cv.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

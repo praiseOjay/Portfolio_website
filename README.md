@@ -54,7 +54,10 @@ Portfolio_website/
 ├── css/
 │   └── styles.css       # Core design system, tokens, layout, modal, and honeypot styles
 ├── js/
-│   ├── config.js        # Central portfolio data (projects, skills, certs)
+│   ├── config.js        # Default profile, education, certifications, skills and experience
+│   ├── data/
+│   │   ├── projects.js  # Curated projects (images, links, case studies)
+│   │   └── cv.js        # Written by Agent HQ whenever the CV changes; overrides config.js
 │   └── main.js          # Component renderers, filters, canvas background, honeypot validation
 ├── index.html           # Main application HTML page
 ├── README.md            # Repository documentation

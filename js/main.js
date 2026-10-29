@@ -2,7 +2,60 @@
    Praise Ojerinola Portfolio - Main Script Logic
    ========================================================================== */
 
+const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* --------------------------------------------------------------------------
+   0. Data: defaults from config.js, projects from data/projects.js, and the CV
+      overlay from data/cv.js (written by Agent HQ whenever the CV changes)
+   -------------------------------------------------------------------------- */
+function escapeDeep(value) {
+    if (typeof value === 'string') {
+        return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    if (Array.isArray(value)) return value.map(escapeDeep);
+    if (value && typeof value === 'object') {
+        return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, escapeDeep(v)]));
+    }
+    return value;
+}
+
+const CATEGORY_ICONS = { data: 'fas fa-database', ai: 'fas fa-robot', backend: 'fas fa-code', mobile: 'fas fa-mobile-alt', devops: 'fas fa-cloud' };
+
+function applyData() {
+    portfolioConfig.projects = Array.isArray(window.portfolioProjects) ? window.portfolioProjects : [];
+    const cv = window.cvData;
+    if (!cv || typeof cv !== 'object') return;
+    const safe = escapeDeep(cv);                      // generated text never becomes markup
+    if (safe.profile) {
+        const base = portfolioConfig.profile;
+        portfolioConfig.profile = { ...base, ...safe.profile, socials: { ...base.socials, ...(safe.profile.socials || {}) } };
+    }
+    // a CV rarely carries credential links, so keep the badge link of the same certificate from the defaults
+    const known = portfolioConfig.certifications;
+    if (Array.isArray(safe.certifications)) {
+        safe.certifications.forEach((cert) => {
+            if (!cert.link) {
+                const match = known.find((k) => sameCertificate(k.name, cert.name));
+                if (match) cert.link = match.link;
+            }
+        });
+    }
+    ['education', 'certifications', 'skills', 'experience'].forEach((key) => {
+        if (Array.isArray(safe[key]) && safe[key].length) portfolioConfig[key] = safe[key];
+    });
+}
+
+function sameCertificate(a, b) {
+    const words = (s) => new Set(String(s || '').toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2 && !['the', 'and', 'for', 'certified'].includes(w)));
+    const x = words(a), y = words(b);
+    if (!x.size || !y.size) return false;
+    const shared = [...x].filter(w => y.has(w)).length;
+    return shared / Math.min(x.size, y.size) >= 0.6;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    applyData();
+
     // 1. Initialize Canvas Particle Background
     initCanvasBg();
 
@@ -28,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
    -------------------------------------------------------------------------- */
 function initCanvasBg() {
     const canvas = document.getElementById('canvas-bg');
-    if (!canvas) return;
+    if (!canvas || prefersReducedMotion) return;
     const ctx = canvas.getContext('2d');
 
     let width = canvas.width = window.innerWidth;
@@ -149,18 +202,83 @@ function renderProfileData() {
     if (emailText) emailText.textContent = p.socials.email;
     if (statusText) statusText.textContent = p.status;
 
+    // Contact details, links, footer and page title all follow the CV
+    const setText = (id, text) => { const el = document.getElementById(id); if (el && text) el.textContent = text; };
+    const setHref = (id, href) => { const el = document.getElementById(id); if (el && href) el.href = href; };
+    const s = p.socials || {};
+    setText('contact-phone', p.phone);
+    setHref('contact-phone-link', p.phone ? `tel:${p.phone.replace(/\s+/g, '')}` : '');
+    setHref('hero-linkedin', s.linkedin);
+    setHref('social-linkedin', s.linkedin);
+    setHref('social-github', s.github);
+    setHref('social-site', s.hyperion || s.website);
+    setHref('social-mail', s.email ? `mailto:${s.email}` : '');
+    setText('nav-name', p.name);
+    setText('nav-initials', String(p.name || '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join(''));
+    setText('current-year', String(new Date().getFullYear()));
+    setText('footer-name', p.name);
+    setText('footer-title', p.title);
+    if (p.name) document.title = `${p.name}${p.title ? ' | ' + p.title : ''}`;
+    if (p.resumeUrl && p.resumeUrl !== '#') {
+        const cv = document.getElementById('cv-download');
+        if (cv) { cv.href = p.resumeUrl; cv.hidden = false; }
+    }
+    if (Array.isArray(p.badges)) {
+        p.badges.slice(0, 2).forEach((b, i) => {
+            const el = document.querySelector(`.floating-badge-${i + 1}`);
+            if (!el || !b) return;
+            el.innerHTML = `<div class="badge-icon"><i class="${b.icon || 'fas fa-award'}"></i></div><div><div>${b.title}</div><small style="color: var(--text-muted);">${b.subtitle || ''}</small></div>`;
+        });
+    }
+    injectStructuredData(p);
+
     const statsContainer = document.getElementById('hero-stats-container');
     if (statsContainer) {
         statsContainer.innerHTML = p.stats.map(s => `
             <div class="stat-item">
                 <div class="stat-header">
-                    <i class="${s.icon || 'fas fa-star'} stat-icon"></i>
+                    <i class="${s.icon || statIcon(s)} stat-icon"></i>
                     <span class="stat-number">${s.value}</span>
                 </div>
                 <span class="stat-label">${s.label}</span>
             </div>
         `).join('');
     }
+}
+
+function statIcon(stat) {
+    const text = `${stat.value} ${stat.label}`.toLowerCase();
+    if (/aws|cloud|azure|gcp/.test(text)) return 'fab fa-aws';
+    if (/msc|degree|bsc|master|bachelor|distinction|qualification|first|2:1/.test(text)) return 'fas fa-graduation-cap';
+    if (/cert/.test(text)) return 'fas fa-award';
+    if (/year|experience/.test(text)) return 'fas fa-briefcase';
+    if (/project/.test(text)) return 'fas fa-folder-open';
+    return 'fas fa-code';
+}
+
+/** Schema.org Person data so search engines can read who this is, built from the same CV data as the page. */
+function injectStructuredData(p) {
+    const old = document.getElementById('person-jsonld');
+    if (old) old.remove();
+    const s = p.socials || {};
+    const data = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: p.name,
+        jobTitle: p.title,
+        description: p.tagline,
+        email: s.email ? `mailto:${s.email}` : undefined,
+        address: p.location ? { '@type': 'PostalAddress', addressLocality: p.location } : undefined,
+        sameAs: [s.github, s.linkedin, s.hyperion].filter(Boolean),
+        alumniOf: (portfolioConfig.education || []).map(e => ({ '@type': 'CollegeOrUniversity', name: e.institution })),
+        knowsAbout: (portfolioConfig.skills || []).map(k => k.name)
+    };
+    const el = document.createElement('script');
+    el.type = 'application/ld+json';
+    el.id = 'person-jsonld';
+    // the data was escaped for HTML, so turn the entities back for JSON, which is not markup
+    el.textContent = JSON.stringify(data).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '\\"');
+    document.head.appendChild(el);
 }
 
 /* --------------------------------------------------------------------------
@@ -170,12 +288,14 @@ function initTypingEffect() {
     const typingEl = document.getElementById('typing-text');
     if (!typingEl) return;
 
-    const titles = [
+    const fromCv = portfolioConfig.profile.titles;
+    const titles = Array.isArray(fromCv) && fromCv.length ? fromCv : [
         "AWS Certified Data Engineer",
         "Software Engineering Master's Graduate",
         "Full-Stack & Cloud Developer",
         "Data Science & AI Specialist"
     ];
+    if (prefersReducedMotion) { typingEl.textContent = titles[0]; return; }
     let titleIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
@@ -251,9 +371,9 @@ function renderCertifications() {
                     <div style="font-size: 0.8rem; color: var(--text-muted);">${cert.issuer} • ${cert.date}</div>
                 </div>
             </div>
-            <a href="${cert.link}" target="_blank" class="project-link-btn" style="font-size: 0.8rem; margin-top: 6px;">
+            ${cert.link ? `<a href="${cert.link}" target="_blank" rel="noopener" class="project-link-btn" style="font-size: 0.8rem; margin-top: 6px;">
                 Verify Badge <i class="fas fa-external-link-alt"></i>
-            </a>
+            </a>` : ''}
         </div>
     `).join('');
 }
@@ -272,17 +392,8 @@ function renderSkills(categoryFilter = 'all') {
     container.innerHTML = filtered.map(skill => `
         <div class="skill-card">
             <div class="skill-header">
-                <i class="${skill.icon} skill-icon"></i>
+                <i class="${skill.icon || CATEGORY_ICONS[skill.category] || 'fas fa-code'} skill-icon"></i>
                 <span class="skill-name">${skill.name}</span>
-            </div>
-            <div class="skill-bar-wrapper">
-                <div class="skill-info">
-                    <span>Proficiency</span>
-                    <span>${skill.level}%</span>
-                </div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: ${skill.level}%"></div>
-                </div>
             </div>
             ${skill.details ? `
             <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 12px; line-height: 1.45; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.03); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05);">
@@ -311,7 +422,7 @@ function renderProjects(categoryFilter = 'all') {
         return `
         <div class="project-card">
             <div class="project-image-wrapper">
-                <img src="${project.image}" alt="${project.title}" class="project-image">
+                <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" decoding="async">
                 <div class="project-overlay">
                     <button class="overlay-btn view-project-btn" data-id="${project.id}" title="View Details">
                         <i class="fas fa-expand-alt"></i>

@@ -1587,3 +1587,13 @@ footer {
     opacity: 0;
     pointer-events: none;
 }
+
+/* Accessibility and motion */
+.skip-link { position: absolute; left: 12px; top: -48px; z-index: 1000; padding: 10px 16px; border-radius: 8px; background: var(--accent-primary); color: #05070d; font-weight: 700; transition: top .15s; }
+.skip-link:focus { top: 12px; }
+a:focus-visible, button:focus-visible, .form-control:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 3px; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    #canvas-bg, .glow-sphere { display: none; }
+}
