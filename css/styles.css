@@ -121,13 +121,13 @@ a:focus-visible, button:focus-visible, .form-control:focus-visible { outline: 2p
 .typing-text { display: inline-block; margin-top: 12px; font-family: var(--font-mono); font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: 0; color: var(--ink); border-bottom: 3px solid var(--accent); padding-bottom: 2px; }
 .hero-description { font-size: 1.18rem; color: var(--ink-soft); max-width: 600px; margin-bottom: 38px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px; }
-.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1.5px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.hero-stats { display: grid; grid-template-columns: repeat(4, minmax(max-content, 1fr)); border: 1.5px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
 .stat-item { padding: 18px 18px 16px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; transition: background .25s; }
 .stat-item:last-child { border-right: 0; }
 .stat-item:hover { background: var(--accent-soft); }
 .stat-header { display: flex; align-items: center; gap: 8px; }
 .stat-icon { color: var(--accent); font-size: .95rem; }
-.stat-number { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
+.stat-number { white-space: nowrap; font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
 .stat-label { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 
 .hero-visual { position: relative; display: flex; justify-content: center; }
@@ -353,3 +353,58 @@ footer { padding: 44px 0; border-top: 1.5px solid var(--line-strong); background
     .section-rail, .scroll-cue, .navbar, .toast { display: none; }
     body { background: #fff; color: #000; }
 }
+
+/* ---- 10. Small screens and touch ---------------------------------------- */
+.theme-toggle, .mobile-menu-btn, .logo-icon, .social-btn, .back-to-top { flex-shrink: 0; }
+.badge-status { max-width: 100%; line-height: 1.4; }
+@media (max-width: 1180px) {
+    .nav-links { gap: 20px; }
+    .nav-actions .btn { display: none; }
+}
+@media (max-width: 1100px) {
+    .floating-badge-1 { left: -2%; }
+    .floating-badge-2 { right: -2%; }
+}
+@media (max-width: 480px) {
+    .navbar-container { gap: 12px; }
+    .logo { gap: 10px; font-size: 1.05rem; }
+    .logo .gradient-text { display: none; }
+    .nav-actions { gap: 8px; }
+    .hero { padding: 112px 0 70px; }
+    .hero-title { font-size: clamp(2.5rem, 13vw, 3.2rem); }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .badge-status { border-radius: 18px; padding: 8px 14px; }
+    .section-header { margin-bottom: 40px; }
+    section { padding: 72px 0; }
+    .education-card, .timeline-card { padding: 22px; }
+    .education-card-header { flex-direction: column; gap: 8px; }
+    .timeline { padding-left: 30px; }
+    .timeline-dot { left: -30px; }
+    .timeline-card { border-radius: var(--radius); }
+    .modal-overlay { padding: 10px; }
+    .modal-title { font-size: 1.6rem; }
+    .stat-number { font-size: 1.2rem; }
+    .toast { bottom: 16px; font-size: .86rem; }
+}
+@media (max-width: 360px) {
+    #nav-name { display: none; }
+}
+/* fingers need bigger targets than mice */
+@media (pointer: coarse) {
+    .project-link-btn, .filter-btn, .nav-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .project-footer { gap: 4px 16px; flex-wrap: wrap; }
+    .theme-toggle, .mobile-menu-btn { width: 44px; height: 44px; }
+    .social-btn, .back-to-top, .overlay-btn { width: 48px; height: 48px; }
+    .form-control { font-size: 16px; }   /* stops iOS zooming into the field */
+}
+.hero { overflow-x: clip; }
+.modal-close-btn { width: 44px; height: 44px; }
+
+@media (max-width: 768px) { .nav-link { padding: 6px 0; } }
+@media (min-width: 993px) and (max-width: 1180px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: 0; }
+    .stat-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 480px) { .stat-number { white-space: normal; } .stat-item { padding: 14px; } }
+@media (pointer: coarse) { .logo { min-height: 44px; } }
