@@ -454,7 +454,8 @@ function renderProjects(categoryFilter = 'all') {
                     </a>` : (hasLive ? `
                     <a href="${project.liveUrl}" target="_blank" class="project-link-btn">
                         Visit Site <i class="fas fa-external-link-alt"></i>
-                    </a>` : '')}
+                    </a>` : (project.private ? `
+                    <span class="project-private" title="The source code is in a private repository"><i class="fas fa-lock"></i> Private repo</span>` : ''))}
                 </div>
             </div>
         </div>
@@ -567,6 +568,8 @@ function openProjectModal(projectId) {
             <a href="${project.liveUrl}" target="_blank" rel="noopener" class="btn ${hasGithub ? 'btn-secondary' : 'btn-primary'}">
                 <i class="fas fa-external-link-alt"></i> Visit Live Website
             </a>` : ''}
+            ${project.private && !hasGithub ? `
+            <span class="project-private project-private-lg"><i class="fas fa-lock"></i> Source code is in a private repository. Happy to walk through it on request.</span>` : ''}
         </div>
     `;
 

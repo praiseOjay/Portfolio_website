@@ -408,3 +408,9 @@ footer { padding: 44px 0; border-top: 1.5px solid var(--line-strong); background
 }
 @media (max-width: 480px) { .stat-number { white-space: normal; } .stat-item { padding: 14px; } }
 @media (pointer: coarse) { .logo { min-height: 44px; } }
+
+/* projects whose source is private: shown, but with no repository link */
+.project-private { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: .74rem; color: var(--muted); }
+.project-private i { color: var(--accent); }
+.project-private-lg { font-size: .8rem; padding: 10px 14px; border: 1.5px dashed var(--line-strong); border-radius: var(--radius); }
+.project-link-btn { white-space: nowrap; } .project-footer { flex-wrap: wrap; }

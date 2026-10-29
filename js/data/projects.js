@@ -164,6 +164,79 @@ window.portfolioProjects = [
     ]
   },
   {
+    "location": "Salford, England, United Kingdom",
+    "liveUrl": "",
+    "githubUrl": "",
+    "private": true,
+    "featured": true,
+    "id": "agent-hq",
+    "title": "Agent HQ",
+    "role": "Full-stack Developer",
+    "period": "Sep 2026 - Oct 2026",
+    "category": "fullstack",
+    "image": "assets/images/project_agent_hq.png",
+    "summary": "A local-first workspace where a team of persistent AI agents plans, writes, researches and runs scheduled routines on your own machine, with a React dashboard, a FastAPI backend and a YouTube channel studio.",
+    "fullDescription": "Agent HQ is a private platform for running a team of persistent AI agents on local models, with hosted models as optional failover. A Chief of Staff triages work, an Ops agent runs routines, and a Writer produces scripts, while a local SQLite store keeps the work journal, notes and approvals. It integrates Gmail through Composio (read only), schedules routines with cron, renders faceless videos with Remotion and ffmpeg, manages local git projects, and drives the AutoApplyAI job-application service. Anything that changes the outside world waits for explicit approval.",
+    "tags": [
+      "Python",
+      "FastAPI",
+      "React",
+      "MUI",
+      "SQLite",
+      "Remotion",
+      "Playwright",
+      "LLM agents"
+    ],
+    "metrics": [
+      "800+ backend tests",
+      "Local-first, approval-gated actions",
+      "Scheduled routines"
+    ],
+    "keyFeatures": [
+      "Persistent agents with their own roles, models and memory, sharing one backend and one approval queue",
+      "Cron routines with missed-run recovery: inbox triage, library and security watch, backlog check, health check",
+      "YouTube studio: research, script, narration, motion-graphics rendering with Remotion, thumbnails and an upload calendar",
+      "Auto Apply: job radar, tailored CVs and cover letters, review-before-submit, recruiter-email scanning that moves a Kanban board",
+      "Pytest, Vitest and Playwright suites, with a secret-scanning pre-commit hook"
+    ]
+  },
+  {
+    "location": "Salford, England, United Kingdom",
+    "liveUrl": "",
+    "githubUrl": "",
+    "private": true,
+    "featured": true,
+    "id": "autoapplyai",
+    "title": "AutoApplyAI",
+    "role": "Full-stack Developer",
+    "period": "Oct 2026 - Oct 2026",
+    "category": "fullstack",
+    "image": "assets/images/project_autoapplyai.png",
+    "summary": "Tailors a CV and cover letter to each job in British English, humanises the writing, checks every claim against the master CV, builds ATS-friendly PDFs and fills the application form for review.",
+    "fullDescription": "AutoApplyAI is a job-application service built with Node, Express, React and SQLite. A job radar finds live roles and scores them against the master CV; the tailoring pipeline rewrites the CV and cover letter for each posting without fabricating experience, and a verification step flags any figure, year or skill the master CV does not support. A Playwright bot fills application forms and stops for human review. It can run with its own model key or borrow the models of Agent HQ.",
+    "tags": [
+      "Node.js",
+      "TypeScript",
+      "Express",
+      "React",
+      "SQLite",
+      "Playwright",
+      "Docker",
+      "LLM"
+    ],
+    "metrics": [
+      "Claim verification against the master CV",
+      "Review-before-submit form filling",
+      "Automatic database backups"
+    ],
+    "keyFeatures": [
+      "Job radar with filters, fit scoring and duplicate detection",
+      "GB English enforcement and an AI-phrasing cleaner on every generated document",
+      "ATS keyword scoring before and after tailoring, and PDF generation for CV and cover letter",
+      "Access control for use from other devices, retry with backoff for model calls, and vitest coverage"
+    ]
+  },
+  {
     "id": "connect-talent-cio",
     "title": "Connect Talent CIO Website",
     "role": "Front-end Developer",
@@ -411,6 +484,91 @@ window.portfolioProjects = [
       "Custom particle flame & explosion rendering engine",
       "Smooth multi-layer parallax scrolling background graphics",
       "Laser combat mechanics, weapon power-ups, and collision detection"
+    ]
+  },
+  {
+    "location": "Salford, England, United Kingdom",
+    "liveUrl": "",
+    "githubUrl": "",
+    "private": true,
+    "featured": true,
+    "id": "overload-ai",
+    "title": "Overload AI: Gym & Hypertrophy Coach",
+    "role": "Mobile Developer",
+    "period": "Sep 2026 - Oct 2026",
+    "category": "mobile",
+    "image": "assets/images/project_gym_overload.jpg",
+    "gallery": [
+      {
+        "title": "Progressive overload",
+        "src": "assets/images/gym_dashboard.jpg"
+      },
+      {
+        "title": "AI coach",
+        "src": "assets/images/gym_ai_coach.jpg"
+      },
+      {
+        "title": "Volume landmarks",
+        "src": "assets/images/gym_volume.jpg"
+      }
+    ],
+    "summary": "Offline-first strength-training app for Android built with React, TypeScript and Capacitor: progressive-overload targets, muscle recovery, an AI coach and five languages.",
+    "fullDescription": "Overload AI is an offline-first Android app built with React 19, TypeScript, Vite and Capacitor, with a custom native plugin for the home-screen widget, the lock-screen rest timer and audio ducking. It calculates target weights and reps from previous performance, tracks volume landmarks and recovery, and includes an AI coach (Google Gemini behind a rate-limited Cloudflare Worker, so the app ships no AI key). Training data stays on the phone unless optional cloud backup is switched on.",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Capacitor",
+      "Android",
+      "Supabase",
+      "Cloudflare Workers",
+      "Gemini",
+      "Playwright"
+    ],
+    "metrics": [
+      "Offline-first",
+      "5 languages",
+      "Automated and accessibility tests"
+    ],
+    "keyFeatures": [
+      "Progressive-overload engine with RPE targets, mesocycles and deload suggestions",
+      "Custom Capacitor plugin: Android widget, lock-screen rest timer, audio ducking",
+      "AI coach through a private proxy with daily limits, so no API key is in the app",
+      "Optional cloud backup with row-level security, Health Connect integration and in-app subscriptions"
+    ]
+  },
+  {
+    "location": "Salford, England, United Kingdom",
+    "liveUrl": "",
+    "githubUrl": "",
+    "private": true,
+    "featured": false,
+    "id": "ai-humaniser",
+    "title": "AI Humaniser Pro",
+    "role": "Full-stack Developer",
+    "period": "Jul 2026 - Aug 2026",
+    "category": "fullstack",
+    "image": "assets/images/project_ai_humaniser.png",
+    "summary": "Web app that rewrites AI-generated text into natural prose: paste text or upload files, choose a tone, see a quality score and export the result.",
+    "fullDescription": "AI Humaniser Pro is a Next.js and TypeScript web application. It accepts pasted text or .txt, .docx and .pdf files, processes them through a queue, and rewrites them with a local model or the OpenAI API according to the chosen tone and intensity. Results are scored and can be exported as .docx, .pdf or a .zip of a whole batch.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "OpenAI API",
+      "mammoth",
+      "docx",
+      "JSZip"
+    ],
+    "metrics": [
+      "Batch processing",
+      "Local or hosted models",
+      ".docx / .pdf / .zip export"
+    ],
+    "keyFeatures": [
+      "Multi-format input: text, Word and PDF",
+      "Batch queue for many files at once",
+      "Tone and intensity controls with a quality score",
+      "Export to Word, PDF or a zip"
     ]
   }
 ];
