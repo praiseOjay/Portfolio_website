@@ -226,7 +226,7 @@ function renderProfileData() {
         p.badges.slice(0, 2).forEach((b, i) => {
             const el = document.querySelector(`.floating-badge-${i + 1}`);
             if (!el || !b) return;
-            el.innerHTML = `<div class="badge-icon"><i class="${b.icon || 'fas fa-award'}"></i></div><div><div>${b.title}</div><small style="color: var(--text-muted);">${b.subtitle || ''}</small></div>`;
+            el.innerHTML = `<div class="badge-icon"><i class="${b.icon || 'fas fa-award'}"></i></div><div><div>${b.title}</div><small>${b.subtitle || ''}</small></div>`;
         });
     }
     injectStructuredData(p);
@@ -362,15 +362,15 @@ function renderCertifications() {
     if (!container) return;
 
     container.innerHTML = portfolioConfig.certifications.map(cert => `
-        <div class="skill-card" style="padding: 20px;">
+        <div class="skill-card">
             <div class="skill-header">
-                <i class="fas fa-certificate skill-icon" style="color: var(--accent-primary);"></i>
+                <i class="fas fa-certificate skill-icon"></i>
                 <div>
-                    <div style="font-weight: 700; font-size: 0.95rem;">${cert.name}</div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted);">${cert.issuer} • ${cert.date}</div>
+                    <div class="cert-name">${cert.name}</div>
+                    <div class="cert-meta">${cert.issuer} • ${cert.date}</div>
                 </div>
             </div>
-            ${cert.link ? `<a href="${cert.link}" target="_blank" rel="noopener" class="project-link-btn" style="font-size: 0.8rem; margin-top: 6px;">
+            ${cert.link ? `<a href="${cert.link}" target="_blank" rel="noopener" class="project-link-btn">
                 Verify Badge <i class="fas fa-external-link-alt"></i>
             </a>` : ''}
         </div>
@@ -395,9 +395,7 @@ function renderSkills(categoryFilter = 'all') {
                 <span class="skill-name">${skill.name}</span>
             </div>
             ${skill.details ? `
-            <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 12px; line-height: 1.45; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.03); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                <i class="fas fa-microchip" style="color: var(--accent-primary); margin-right: 6px;"></i> ${skill.details}
-            </div>` : ''}
+            <div class="skill-details"><i class="fas fa-microchip"></i> ${skill.details}</div>` : ''}
         </div>
     `).join('');
 }
@@ -437,13 +435,9 @@ function renderProjects(categoryFilter = 'all') {
                 </div>
             </div>
             <div class="project-content">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
-                    <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-primary); background: rgba(0, 242, 254, 0.08); padding: 3px 8px; border-radius: 4px; font-weight: 600;">
-                        ${project.role || 'Developer'}
-                    </span>
-                    <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
-                        ${project.period || ''}
-                    </span>
+                <div class="project-meta">
+                    <span class="project-role">${project.role || 'Developer'}</span>
+                    <span class="project-period">${project.period || ''}</span>
                 </div>
                 <div class="project-tags">
                     ${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
@@ -545,46 +539,32 @@ function openProjectModal(projectId) {
 
     modalBody.innerHTML = `
         ${imageSectionHtml}
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
-            <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-primary); background: rgba(0, 242, 254, 0.1); padding: 4px 10px; border-radius: 6px; font-weight: 600;">
-                <i class="fas fa-user-tag" style="margin-right: 6px;"></i> ${project.role || 'Developer'}
-            </span>
-            <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
-                <i class="fas fa-calendar-alt" style="margin-right: 4px;"></i> ${project.period || ''} • ${project.location || 'Salford, UK'}
-            </span>
+        <div class="modal-meta">
+            <span class="modal-role"><i class="fas fa-user-tag"></i> ${project.role || 'Developer'}</span>
+            <span class="modal-when"><i class="fas fa-calendar-alt"></i> ${project.period || ''}${project.period && project.location ? ' • ' : ''}${project.location || ''}</span>
         </div>
-        <div class="project-tags" style="margin-bottom: 12px;">
+        <div class="project-tags">
             ${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
         </div>
-        <h2 style="font-size: 1.8rem; margin-bottom: 12px;">${project.title}</h2>
-        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">${project.fullDescription}</p>
+        <h2 class="modal-title">${project.title}</h2>
+        <p class="modal-text">${project.fullDescription}</p>
 
-        <div style="margin-bottom: 24px;">
-            <h4 style="margin-bottom: 12px; color: var(--accent-primary);">Key Architectural Features</h4>
-            <ul style="list-style: none;">
-                ${project.keyFeatures.map(f => `
-                    <li style="padding-left: 20px; position: relative; margin-bottom: 8px; color: var(--text-secondary);">
-                        <span style="position: absolute; left:0; color: var(--accent-primary);">✓</span> ${f}
-                    </li>
-                `).join('')}
-            </ul>
+        <h4 class="modal-subtitle">Key features</h4>
+        <ul class="modal-features">
+            ${project.keyFeatures.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+
+        <div class="modal-metrics">
+            ${project.metrics.map(m => `<div class="modal-metric">${m}</div>`).join('')}
         </div>
 
-        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;">
-            ${project.metrics.map(m => `
-                <div style="padding: 8px 16px; background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--accent-primary);">
-                    ⚡ ${m}
-                </div>
-            `).join('')}
-        </div>
-
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <div class="modal-actions">
             ${hasGithub ? `
-            <a href="${project.githubUrl}" target="_blank" class="btn btn-primary">
+            <a href="${project.githubUrl}" target="_blank" rel="noopener" class="btn btn-primary">
                 <i class="fab fa-github"></i> View GitHub Repository
             </a>` : ''}
             ${hasLive ? `
-            <a href="${project.liveUrl}" target="_blank" class="btn ${hasGithub ? 'btn-secondary' : 'btn-primary'}">
+            <a href="${project.liveUrl}" target="_blank" rel="noopener" class="btn ${hasGithub ? 'btn-secondary' : 'btn-primary'}">
                 <i class="fas fa-external-link-alt"></i> Visit Live Website
             </a>` : ''}
         </div>
@@ -690,7 +670,7 @@ function initThemeToggle() {
     const toggleBtn = document.getElementById('theme-toggle-btn');
     if (!toggleBtn) return;
 
-    const currentTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
 

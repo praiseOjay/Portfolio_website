@@ -28,10 +28,9 @@ A modern, high-performance, dark-themed personal portfolio website built with Va
 ## ✨ Features
 
 - **📜 Scroll-Triggered Page:** Sections, cards and timeline entries reveal as they scroll into view, the hero drifts with the scroll, stats count up, the experience line draws itself, and a side rail tracks the current section. Turned off automatically for visitors who prefer reduced motion (`js/scroll.js`).
-- **⚡ Interactive Canvas Particle Engine:** Custom canvas-based particle system with smooth physics and ambient dark mode styling.
 - **🚀 Dynamic Project Showcase & Filtering:** Real-time filtering across Data Engineering, AI / Data Science, Full-Stack, Mobile Dev, and Game Engineering.
 - **🔍 Rich Project Detail Modals:** Uncropped, aspect-ratio preserved project modal overlays featuring role badges, metrics, architectural features, GitHub repository links, and live deployment URLs.
-- **💎 Glassmorphic Design System:** Sleek dark glassmorphic cards, glowing badges, vibrant HSL gradients, smooth micro-interactions, and custom typography (*Outfit*, *Plus Jakarta Sans*, *Fira Code*).
+- **🖋️ Paper & Ink Design System:** A warm editorial look with Fraunces display type, Manrope body text, hard-shadow cards and one vermilion accent. Light by default, with an ink-dark theme that follows the visitor's system setting and a manual toggle.
 - **📜 Verified Certifications & Education:** Direct Credly credential verification for AWS Certified Data Engineer (DEA-C01), Google AI Professional, IBM Agile Explorer, and University of Salford degrees.
 - **🛡️ Honeypot Anti-Spam Protection:** Hidden honeypot field in the contact form that catches automated bot submissions while remaining invisible to real users.
 

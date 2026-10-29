@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +11,24 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/praise_portrait.jpg">
     <meta name="twitter:card" content="summary">
-    <meta name="theme-color" content="#0a0d16">
-    <link rel="icon" href="assets/images/praise_avatar.png">
+    <meta name="theme-color" content="#f3eee4">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <script>
+        // pick the theme before the page paints: the visitor's choice, else their system setting
+        try {
+            var saved = localStorage.getItem('portfolio-theme');
+            var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+        } catch (e) {}
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,11 +38,6 @@
 </head>
 <body>
     <a href="#about" class="skip-link">Skip to content</a>
-
-    <!-- Background Interactivity Canvas & Glow Orbs -->
-    <canvas id="canvas-bg"></canvas>
-    <div class="glow-sphere glow-sphere-1"></div>
-    <div class="glow-sphere glow-sphere-2"></div>
 
     <!-- Scroll Progress Indicator Bar -->
     <div class="scroll-progress-bar" id="scroll-progress"></div>
