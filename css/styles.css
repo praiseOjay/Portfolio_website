@@ -1597,3 +1597,60 @@ a:focus-visible, button:focus-visible, .form-control:focus-visible { outline: 2p
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     #canvas-bg, .glow-sphere { display: none; }
 }
+
+/* ==========================================================================
+   Scroll-triggered motion (js/scroll.js adds .scroll-fx; without it nothing is hidden)
+   ========================================================================== */
+.scroll-fx .fx {
+    opacity: 0;
+    transition: opacity .75s cubic-bezier(.2, .7, .2, 1) var(--fx-delay, 0ms), transform .75s cubic-bezier(.2, .7, .2, 1) var(--fx-delay, 0ms);
+    will-change: opacity, transform;
+}
+.scroll-fx .fx[data-fx="up"] { transform: translateY(40px); }
+.scroll-fx .fx[data-fx="left"] { transform: translateX(-48px); }
+.scroll-fx .fx[data-fx="right"] { transform: translateX(48px); }
+.scroll-fx .fx[data-fx="scale"] { transform: scale(.9) translateY(16px); }
+.scroll-fx .fx.in { opacity: 1; transform: none; }
+
+/* the hero drifts and fades as the page scrolls */
+.scroll-fx .hero-content { translate: 0 calc(var(--sy, 0) * -0.14px); opacity: calc(1 - var(--sy, 0) / 620); }
+.scroll-fx .hero-visual { translate: 0 calc(var(--sy, 0) * 0.1px); opacity: calc(1 - var(--sy, 0) / 760); }
+.scroll-fx .glow-sphere-1 { translate: 0 calc(var(--sy, 0) * 0.22px); }
+.scroll-fx .glow-sphere-2 { translate: 0 calc(var(--sy, 0) * -0.16px); }
+
+/* the experience line draws itself as it is scrolled past */
+.scroll-fx .timeline::before { transform-origin: top; transform: scaleY(var(--tl, 0)); transition: transform .15s linear; }
+.scroll-fx .timeline-dot { transition: box-shadow .4s, background .4s; }
+.scroll-fx .timeline-item.fx:not(.in) .timeline-dot { box-shadow: none; }
+
+/* section rail */
+.section-rail {
+    position: fixed; right: 18px; top: 50%; z-index: 90; display: flex; flex-direction: column; gap: 14px;
+    transform: translateY(-50%) translateX(24px); opacity: 0; pointer-events: none; transition: opacity .4s, transform .4s;
+}
+.section-rail.visible { opacity: 1; transform: translateY(-50%); pointer-events: auto; }
+.rail-dot {
+    position: relative; width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--text-muted); background: transparent;
+    transition: transform .25s, background .25s, border-color .25s, box-shadow .25s;
+}
+.rail-dot::after {
+    content: attr(data-label); position: absolute; right: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap;
+    padding: 4px 10px; border-radius: 6px; font-size: .75rem; font-weight: 600; color: var(--text-primary);
+    background: var(--bg-glass); border: 1px solid var(--border-color); opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.rail-dot:hover::after, .rail-dot:focus-visible::after { opacity: 1; }
+.rail-dot.active { background: var(--accent-primary); border-color: var(--accent-primary); transform: scale(1.35); box-shadow: var(--glow-primary); }
+@media (max-width: 1100px) { .section-rail { display: none; } }
+
+/* scroll cue under the hero */
+.scroll-cue {
+    position: absolute; left: 50%; bottom: 22px; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text-muted); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; transition: opacity .4s;
+}
+.scroll-cue.gone { opacity: 0; pointer-events: none; }
+.scroll-cue-mouse { width: 22px; height: 34px; border: 2px solid var(--text-muted); border-radius: 12px; display: block; position: relative; }
+.scroll-cue-mouse span { position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--accent-primary); animation: cue-wheel 1.6s ease-in-out infinite; }
+@keyframes cue-wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
+@media (max-height: 640px) { .scroll-cue { display: none; } }
+
+@media print { .scroll-fx .fx { opacity: 1 !important; transform: none !important; } .section-rail, .scroll-cue { display: none; } }

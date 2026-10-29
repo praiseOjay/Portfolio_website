@@ -27,6 +27,7 @@ A modern, high-performance, dark-themed personal portfolio website built with Va
 
 ## ✨ Features
 
+- **📜 Scroll-Triggered Page:** Sections, cards and timeline entries reveal as they scroll into view, the hero drifts with the scroll, stats count up, the experience line draws itself, and a side rail tracks the current section. Turned off automatically for visitors who prefer reduced motion (`js/scroll.js`).
 - **⚡ Interactive Canvas Particle Engine:** Custom canvas-based particle system with smooth physics and ambient dark mode styling.
 - **🚀 Dynamic Project Showcase & Filtering:** Real-time filtering across Data Engineering, AI / Data Science, Full-Stack, Mobile Dev, and Game Engineering.
 - **🔍 Rich Project Detail Modals:** Uncropped, aspect-ratio preserved project modal overlays featuring role badges, metrics, architectural features, GitHub repository links, and live deployment URLs.
@@ -58,6 +59,7 @@ Portfolio_website/
 │   ├── data/
 │   │   ├── projects.js  # Curated projects (images, links, case studies)
 │   │   └── cv.js        # Written by Agent HQ whenever the CV changes; overrides config.js
+│   ├── scroll.js        # Scroll-triggered reveals, parallax, counters, section rail
 │   └── main.js          # Component renderers, filters, canvas background, honeypot validation
 ├── index.html           # Main application HTML page
 ├── README.md            # Repository documentation
