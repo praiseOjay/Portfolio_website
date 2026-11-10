@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Seasons: the page re-themes itself for spring, summer, autumn and winter, and adds
+   motion-graphics layers (drifting colour fields, a particle canvas, a hero scene with
+   an orbiting sun or moon, rotating ring type and orbiting glyphs, kinetic type,
+   crossed marquee tapes and a colour wipe between seasons).
+   <html data-season="..."> is set in <head> before paint; js/season.js does the rest.
+   Every accent below meets WCAG AA (4.5:1) against its paper, in light and dark.
+   ========================================================================== */
+
+/* ---- 1. Season tokens ----------------------------------------------------
+   Each block sets the same variables in light and dark, so the dark block (more
+   specific) always wins in dark mode. The second selector in each dark rule lets any
+   element carry its own season (the picker options and the transition wipe do). */
+[data-season="spring"] {
+    --paper: #f6efec; --surface: #fdf8f6; --surface-2: #efe3df;
+    --accent: #b3255a; --accent-ink: #ffffff; --accent-2: #3d7a1f;
+    --accent-soft: rgba(179, 37, 90, 0.1);
+    --orb-a: #ffe3ec; --orb-b: #f28cae; --ray-step: 36deg; --ray-width: 14deg; --ray-opacity: .35;
+    --p1: #f49ab9; --p2: #e9719b; --p3: #fbc6d7;
+}
+[data-theme="dark"][data-season="spring"], [data-theme="dark"] [data-season="spring"] {
+    --paper: #141012; --surface: #1c1619; --surface-2: #271e22;
+    --accent: #ff8fb3; --accent-ink: #1a0f14; --accent-2: #a5dc74;
+    --accent-soft: rgba(255, 143, 179, 0.13);
+    --orb-a: #ffd2e0; --orb-b: #c2477a; --ray-step: 36deg; --ray-width: 14deg; --ray-opacity: .3;
+    --p1: #ffb3cb; --p2: #f78fb0; --p3: #ffd9e5;
+}
+
+[data-season="summer"] {
+    --paper: #f5f0e1; --surface: #fcf9ef; --surface-2: #ece4cc;
+    --accent: #0b6b74; --accent-ink: #ffffff; --accent-2: #a94e05;
+    --accent-soft: rgba(11, 107, 116, 0.1);
+    --orb-a: #fff2b8; --orb-b: #f5a300; --ray-step: 15deg; --ray-width: 5deg; --ray-opacity: .75;
+    --p1: #f2b705; --p2: #f59e0b; --p3: #ffd65a;
+}
+[data-theme="dark"][data-season="summer"], [data-theme="dark"] [data-season="summer"] {
+    --paper: #0f1213; --surface: #161b1c; --surface-2: #1f2627;
+    --accent: #3fd6c6; --accent-ink: #0a1414; --accent-2: #ffc23d;
+    --accent-soft: rgba(63, 214, 198, 0.12);
+    --orb-a: #fff1b0; --orb-b: #ff9d2e; --ray-step: 15deg; --ray-width: 5deg; --ray-opacity: .6;
+    --p1: #ffd45a; --p2: #ffb02e; --p3: #fff1a8;
+}
+
+[data-season="autumn"] {
+    --paper: #f3ece1; --surface: #fbf6ee; --surface-2: #ebe1d2;
+    --accent: #b5390c; --accent-ink: #ffffff; --accent-2: #8a5a06;
+    --accent-soft: rgba(181, 57, 12, 0.1);
+    --orb-a: #ffd9a8; --orb-b: #e2632a; --ray-step: 20deg; --ray-width: 6deg; --ray-opacity: .4;
+    --p1: #c2410c; --p2: #d98a0b; --p3: #9a3412;
+}
+[data-theme="dark"][data-season="autumn"], [data-theme="dark"] [data-season="autumn"] {
+    --paper: #12100e; --surface: #1a1714; --surface-2: #231f1a;
+    --accent: #ff7a45; --accent-ink: #14100c; --accent-2: #ffc04d;
+    --accent-soft: rgba(255, 122, 69, 0.12);
+    --orb-a: #ffc98a; --orb-b: #b3441a; --ray-step: 20deg; --ray-width: 6deg; --ray-opacity: .35;
+    --p1: #ff7a45; --p2: #ffb648; --p3: #d9481f;
+}
+
+[data-season="winter"] {
+    --paper: #edf1f5; --surface: #f8fafc; --surface-2: #e0e7ef;
+    --accent: #1f4fbf; --accent-ink: #ffffff; --accent-2: #5a43b5;
+    --accent-soft: rgba(31, 79, 191, 0.09);
+    --orb-a: #ffffff; --orb-b: #b9cbe4; --ray-step: 10deg; --ray-width: 1.5deg; --ray-opacity: .5;
+    --p1: #9fb6d6; --p2: #c4d3e8; --p3: #7f9cc6;
+}
+[data-theme="dark"][data-season="winter"], [data-theme="dark"] [data-season="winter"] {
+    --paper: #0d1117; --surface: #141a22; --surface-2: #1c2430;
+    --accent: #8cc4ff; --accent-ink: #0b1220; --accent-2: #c3b3ff;
+    --accent-soft: rgba(140, 196, 255, 0.12);
+    --orb-a: #f4f8ff; --orb-b: #6f8bb8; --ray-step: 10deg; --ray-width: 1.5deg; --ray-opacity: .35;
+    --p1: #ffffff; --p2: #dbe8ff; --p3: #b9d2f5;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- 2. Background layers: drifting colour fields and the particle canvas -- */
+.season-backdrop { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.season-backdrop span {
+    position: absolute; width: 70vmax; aspect-ratio: 1; border-radius: 50%; opacity: .55;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 62%);
+    transition: background 1s;
+    animation: drift-a 34s ease-in-out infinite alternate;
+}
+.season-backdrop .blob-1 { top: -32vmax; left: -24vmax; }
+.season-backdrop .blob-2 { top: 18vh; right: -34vmax; background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 18%, transparent) 0%, transparent 62%); animation-name: drift-b; animation-duration: 42s; }
+.season-backdrop .blob-3 { bottom: -40vmax; left: 20vw; width: 60vmax; animation-duration: 50s; }
+[data-theme="dark"] .season-backdrop span { opacity: .8; }
+@keyframes drift-a { to { transform: translate(14vw, 12vh) scale(1.18); } }
+@keyframes drift-b { to { transform: translate(-16vw, 18vh) scale(.9); } }
+
+.season-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; transition: opacity .6s var(--ease); }
+.season-canvas.is-fading { opacity: 0; }
+
+/* the banded sections let the season show through */
+#education, #skills, #experience { background: color-mix(in srgb, var(--surface) 82%, transparent); }
+
+/* ---- 3. Hero scene: sun or moon, ring type, orbiting glyphs --------------- */
+.season-scene {
+    position: absolute; left: 50%; top: 47%; z-index: 0; pointer-events: none;
+    width: calc(var(--avatar-w) * 1.42); aspect-ratio: 1; translate: -50% -50%;
+}
+.season-scene.front { z-index: 2; }
+.season-orb {
+    position: absolute; right: -4%; top: -2%; width: 44%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 34% 32%, var(--orb-a) 0%, var(--orb-b) 72%);
+    box-shadow: 0 0 80px color-mix(in srgb, var(--orb-b) 50%, transparent);
+    animation: orb-float 9s ease-in-out infinite;
+    transition: background .8s, box-shadow .8s;
+}
+.season-orb::before {
+    content: ""; position: absolute; inset: -42%; border-radius: 50%; opacity: var(--ray-opacity);
+    background: repeating-conic-gradient(from 0deg, var(--orb-b) 0deg var(--ray-width), transparent var(--ray-width) var(--ray-step));
+    -webkit-mask: radial-gradient(circle, transparent 38%, #000 40%, transparent 70%);
+    mask: radial-gradient(circle, transparent 38%, #000 40%, transparent 70%);
+    animation: spin 48s linear infinite;
+}
+@keyframes orb-float { 50% { transform: translate(-6%, 8%) scale(1.04); } }
+
+.season-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: spin 38s linear infinite; }
+.season-ring text { font-family: var(--font-mono); font-size: 8.4px; font-weight: 700; letter-spacing: .12em; fill: var(--ink); text-transform: uppercase; }
+.season-ring .ring-dash { fill: none; stroke: var(--accent); stroke-width: .8; stroke-dasharray: 2 5; }
+
+.season-orbit { position: absolute; inset: 4%; border-radius: 50%; animation: spin 26s linear infinite; }
+.season-orbit.orbit-2 { inset: -6%; animation-duration: 40s; animation-direction: reverse; }
+.season-orbit.orbit-3 { inset: 18%; animation-duration: 17s; }
+.orbit-glyph { position: absolute; left: 50%; top: 0; width: 28px; height: 28px; translate: -50% -50%; color: var(--accent); animation: spin 7s linear infinite reverse; filter: drop-shadow(2px 2px 0 color-mix(in srgb, var(--ink) 25%, transparent)); }
+.orbit-2 .orbit-glyph { width: 22px; height: 22px; color: var(--accent-2); top: auto; bottom: 0; translate: -50% 50%; }
+.orbit-3 .orbit-glyph { width: 16px; height: 16px; left: 0; top: 50%; translate: -50% -50%; }
+
+.avatar-wrapper { animation: avatar-bob 7s ease-in-out infinite; }
+@keyframes avatar-bob { 50% { transform: translateY(-8px); } }
+.floating-badge-1 { animation: badge-bob-1 6s ease-in-out infinite; }
+.floating-badge-2 { animation: badge-bob-2 7s ease-in-out infinite; }
+@keyframes badge-bob-1 { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(-2deg) translateY(-10px); } }
+@keyframes badge-bob-2 { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(5deg) translateY(8px); } }
+
+/* ---- 4. Kinetic type ------------------------------------------------------ */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.kt-word { display: inline-block; white-space: nowrap; }
+.kt-char { display: inline-block; }
+.kt-ready .kt-char { animation: char-in .9s var(--ease) both; animation-delay: calc(var(--i) * 34ms + 120ms); }
+.kt-ready .gradient-text .kt-char {
+    animation: char-in .9s var(--ease) both, char-wave 6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 34ms + 120ms), calc(var(--i) * 110ms + 1.4s);
+}
+@keyframes char-in { from { opacity: 0; transform: translateY(.55em) rotate(10deg) scale(.86); } }
+@keyframes char-wave { 0%, 40%, 100% { color: var(--accent); translate: 0 0; } 20% { color: var(--accent-2); translate: 0 -.06em; } }
+
+.typing-text { border-bottom-color: var(--accent); }
+.typing-text::after { content: ""; display: inline-block; width: .55em; height: 2px; margin-left: 2px; background: var(--accent-2); vertical-align: .15em; animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+
+/* section headers: a seasonal glyph by the tag and a swoosh that draws under the title */
+.tag-glyph { width: 15px; height: 15px; color: var(--accent-2); animation: spin 14s linear infinite; flex-shrink: 0; }
+.title-swoosh { display: block; width: clamp(120px, 22vw, 230px); height: 14px; margin: -8px 0 18px; overflow: visible; }
+.title-swoosh path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.3s var(--ease) .25s, stroke .6s; }
+.section-header.drawn .title-swoosh path { stroke-dashoffset: 0; }
+
+.scroll-progress-bar { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+/* ---- 5. Crossed marquee tapes --------------------------------------------- */
+.tapes { position: relative; z-index: 2; height: clamp(130px, 15vw, 210px); overflow: hidden; margin: -10px 0; }
+.tape { position: absolute; left: -6%; width: 112%; top: 50%; border-block: 1.5px solid var(--line-strong); overflow: hidden; }
+.tape-front { background: var(--ink); color: var(--paper); transform: translateY(-50%) rotate(-2.6deg); z-index: 1; }
+.tape-back { background: var(--accent); color: var(--accent-ink); transform: translateY(-50%) rotate(2.2deg); }
+.tape-track { display: flex; width: max-content; padding: 12px 0; animation: tape-run var(--tape-dur, 45s) linear infinite; }
+.tape-back .tape-track { animation-direction: reverse; animation-duration: calc(var(--tape-dur, 45s) * 1.3); }
+.tape:hover .tape-track { animation-play-state: paused; }
+.tape-item { display: inline-flex; align-items: center; gap: .9em; padding-right: .9em; white-space: nowrap; font-family: var(--font-display); font-size: clamp(1.05rem, 2.2vw, 1.75rem); font-weight: 500; letter-spacing: -.01em; }
+.tape-back .tape-item { font-family: var(--font-mono); font-size: clamp(.8rem, 1.4vw, 1.05rem); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.tape-item svg { width: .9em; height: .9em; color: var(--accent); flex-shrink: 0; }
+.tape-back .tape-item svg { color: var(--accent-ink); }
+.tape-front .tape-item:nth-child(even) { font-style: italic; color: color-mix(in srgb, var(--paper) 75%, var(--accent)); }
+@keyframes tape-run { to { transform: translateX(-50%); } }
+
+/* ---- 6. Season picker in the navigation ----------------------------------- */
+.season-picker { position: relative; }
+.season-btn { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--line-strong); background: transparent; color: var(--accent); display: grid; place-items: center; flex-shrink: 0; transition: background .2s, color .2s; }
+.season-btn svg { width: 20px; height: 20px; transition: transform .6s var(--ease); }
+.season-btn:hover, .season-btn[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
+.season-btn:hover svg, .season-btn[aria-expanded="true"] svg { transform: rotate(72deg) scale(1.08); }
+.season-menu {
+    position: absolute; right: 0; top: calc(100% + 12px); z-index: 160; width: 248px; max-width: calc(100vw - 24px); padding: 8px;
+    background: var(--surface); border: 1.5px solid var(--line-strong); border-radius: var(--radius); box-shadow: 6px 6px 0 var(--accent);
+    opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.97); transform-origin: top right;
+    transition: opacity .2s, transform .25s var(--ease), visibility 0s .25s;
+}
+.season-menu.open { opacity: 1; visibility: visible; transform: none; transition: opacity .2s, transform .25s var(--ease), visibility 0s; }
+.season-menu-title { padding: 6px 10px 8px; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.season-option { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 8px 10px; border: 0; border-radius: 10px; background: transparent; color: var(--ink); text-align: left; font-weight: 700; font-size: .9rem; line-height: 1.2; transition: background .15s; }
+.season-option small { display: block; margin-top: 2px; font-family: var(--font-mono); font-size: .66rem; font-weight: 500; color: var(--muted); }
+.season-option svg { width: 22px; height: 22px; color: var(--accent); flex-shrink: 0; }
+.season-option:hover, .season-option:focus-visible { background: var(--accent-soft); outline: none; }
+.season-option[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.season-option[aria-checked="true"] small { color: color-mix(in srgb, var(--paper) 70%, transparent); }
+.season-option[aria-checked="true"] svg { color: var(--paper); }
+.season-option .auto-dot { width: 22px; height: 22px; border-radius: 50%; border: 1.5px dashed currentColor; display: grid; place-items: center; flex-shrink: 0; font-size: .6rem; font-family: var(--font-mono); }
+
+/* ---- 7. Wipe between seasons ---------------------------------------------- */
+.season-wipe {
+    position: fixed; inset: 0; z-index: 5000; pointer-events: none;
+    display: grid; place-content: center; justify-items: center; gap: 14px;
+    background: var(--accent); color: var(--accent-ink);
+    clip-path: circle(0 at var(--wx, 50%) var(--wy, 50%));
+    transition: clip-path .75s cubic-bezier(.7, 0, .25, 1), opacity .5s;
+}
+.season-wipe.grow { clip-path: circle(var(--wr, 150vmax) at var(--wx, 50%) var(--wy, 50%)); }
+.season-wipe.fade { opacity: 0; }
+.season-wipe svg { width: clamp(72px, 14vw, 150px); height: auto; aspect-ratio: 1; animation: wipe-glyph 1.2s var(--ease) both; }
+.season-wipe span { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(2.6rem, 9vw, 6.5rem); line-height: 1; letter-spacing: -.03em; animation: wipe-word .9s var(--ease) .12s both; }
+@keyframes wipe-glyph { from { transform: rotate(-120deg) scale(.4); opacity: 0; } }
+@keyframes wipe-word { from { transform: translateY(40%); opacity: 0; } }
+
+.season-note { display: inline-flex; align-items: center; gap: 8px; }
+.season-note svg { width: 14px; height: 14px; color: var(--accent); }
+
+/* ---- 8. Calm versions ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .season-backdrop span, .season-orb, .season-orb::before, .season-ring, .season-orbit, .orbit-glyph,
+    .avatar-wrapper, .floating-badge, .tag-glyph, .tape-track, .typing-text::after { animation: none !important; }
+    .tape-track { transform: none; }
+}
+@media print {
+    .season-backdrop, .season-canvas, .season-scene, .tapes, .season-picker, .season-wipe { display: none !important; }
+}

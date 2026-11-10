@@ -4,7 +4,7 @@
 [![AWS Certified Data Engineer](https://img.shields.io/badge/AWS-Certified%20Data%20Engineer%20Associate-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://www.credly.com/badges/53369df2-187c-4b08-9ed8-18911445242d/public_url)
 [![License: MIT](https://img.shields.io/badge/License-MIT-15120F.svg?style=for-the-badge)](LICENSE)
 
-A personal portfolio built with plain HTML, CSS and JavaScript: no framework and no build step. It has a warm editorial "paper and ink" design in light and dark, content that reveals as you scroll, and a layout that works from a 320 px phone up to a wide desktop.
+A personal portfolio built with plain HTML, CSS and JavaScript: no framework and no build step. It is a motion-graphics page that **changes with the seasons**: spring blossom, summer sun and fireflies, autumn leaves and winter snow, each with its own palette in light and dark. Content reveals as you scroll, and the layout is tuned for screens from a 320 px phone up to a 4K monitor.
 
 **Live:** <https://praiseojay.github.io/Portfolio_website/>
 
@@ -12,10 +12,13 @@ A personal portfolio built with plain HTML, CSS and JavaScript: no framework and
 
 ## 📸 Previews
 
-### Hero (light)
+### The four seasons
+![Spring, summer, autumn and winter](assets/images/screenshot_seasons.png)
+
+### Hero (autumn, light)
 ![Hero preview](assets/images/screenshot_hero.png)
 
-### Hero (dark)
+### Hero (winter, dark)
 ![Dark theme preview](assets/images/screenshot_dark.png)
 
 ### Projects and case studies
@@ -38,9 +41,26 @@ A personal portfolio built with plain HTML, CSS and JavaScript: no framework and
 
 ## ✨ Features
 
+- **Seasonal motion graphics:** the page picks the season from today's date, in the visitor's own hemisphere (worked out from their time zone, so Sydney gets summer in December). Each season brings its own palette, a particle canvas (tumbling blossom petals, rising fireflies, gusting maple and oak leaves, snow in three depths), drifting colour fields, a sun or moon with turning rays behind the portrait, rotating ring type, orbiting glyphs and crossed marquee tapes. Scrolling stirs up the wind and gives the particles depth, and a mouse pushes them aside. A picker in the navigation previews any season with a colour wipe, and `?season=winter` in the link does the same (`js/season.js`, `css/seasons.css`).
 - **Scroll-triggered page:** sections and cards reveal as they enter the screen, the hero drifts as you scroll, stats count up, the experience line draws itself, and a side rail shows which section you are in. Everything simply shows, with no motion, for visitors who prefer reduced motion (`js/scroll.js`).
 - **Light and dark themes:** follows the visitor's system setting on first visit and remembers their choice. The theme is set before the page paints, so there is no flash.
-- **Mobile-friendly:** checked with no sideways scrolling from 320 px to 1024 px. The navigation collapses into a menu, tap targets are at least 44 px on touch screens, form fields stay at 16 px so iOS does not zoom, and the hero, stats, cards and project modal all reflow.
+- **Mobile-friendly, with breakpoints for every screen:** checked with no sideways scrolling at every width from 320 px to 2560 px, including phones on their side. Breakpoints:
+
+  | Width | Device | What changes |
+  | --- | --- | --- |
+  | ≥ 2560 px | 4K, ultra-wide | text scales up (20 px base), 1640 px content width |
+  | ≥ 1920 px | large desktop | 18 px base, 1440 px content width |
+  | ≥ 1600 px | desktop | 17 px base, 1320 px content width |
+  | ≤ 1400 / 1280 px | laptop | header button and side rail tuck away, tighter navigation |
+  | ≤ 1080 px | tablet landscape | navigation becomes a full-screen menu that wipes in |
+  | ≤ 900 px | tablet portrait | hero in one column, portrait on top |
+  | ≤ 768 px | large phone | two-column stats, one-column cards |
+  | ≤ 560 px | phone | compact cards, stacked footer |
+  | ≤ 480 px | small phone | full-width buttons, full-screen project details |
+  | ≤ 360 px | very small phone | tighter spacing, name hidden in the logo |
+  | height ≤ 520 px, landscape | phone on its side | hero back to two columns in one screen |
+
+  Tap targets are at least 44 px on touch screens, hover lifts are switched off where there is no mouse, form fields stay at 16 px so iOS does not zoom, and the menu and project details close with Escape.
 - **Projects with filtering and detail pages:** filter by category, open any project for its full description, features, metrics, screenshots gallery, and GitHub and live links.
 - **Verified credentials:** certifications link straight to their public Credly or issuer pages.
 - **Contact form with spam protection:** sends through FormSubmit, with a hidden honeypot field and a mail-app fallback.
@@ -54,7 +74,7 @@ A personal portfolio built with plain HTML, CSS and JavaScript: no framework and
 - **Core:** HTML5, CSS3 (custom properties for the two themes, grid and flexbox), vanilla JavaScript (ES6+)
 - **Type:** Fraunces (display), Manrope (text) and JetBrains Mono (labels) from Google Fonts
 - **Icons:** Font Awesome 6
-- **Motion:** `IntersectionObserver` and `requestAnimationFrame`, no animation library
+- **Motion:** CSS animations, a 2D canvas for the seasonal particles, `IntersectionObserver` and `requestAnimationFrame`, no animation library. Everything is still for visitors who prefer reduced motion, and the particles pause when the tab is hidden.
 - **Hosting:** GitHub Pages, served straight from `main`
 
 ---
@@ -68,13 +88,15 @@ Portfolio_website/
 │   ├── favicon.svg          # Site icon (vector)
 │   ├── favicon-16.png, favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png
 ├── css/
-│   └── styles.css           # Design tokens, light and dark themes, layout, components, responsive rules
+│   ├── styles.css           # Design tokens, light and dark themes, layout, components, breakpoints
+│   └── seasons.css          # Season palettes and the motion-graphics layers
 ├── js/
 │   ├── config.js            # Default profile, education, certifications, skills and experience
 │   ├── data/
 │   │   ├── projects.js      # Curated projects (images, links, case studies)
 │   │   └── cv.js            # Generated from the CV; overrides config.js when present
-│   ├── main.js              # Renders the page, filters, modal, theme toggle, contact form
+│   ├── main.js              # Renders the page, filters, modal, theme toggle, menu, contact form
+│   ├── season.js            # Season picker, particle canvas, kinetic type, marquee tapes
 │   └── scroll.js            # Scroll-triggered reveals, parallax, counters, section rail
 ├── favicon.ico
 ├── site.webmanifest
@@ -121,7 +143,7 @@ It is a static site, so any static server works:
 python -m http.server 8080
 ```
 
-Then open <http://localhost:8080>. Serving it over HTTP (rather than opening `index.html` directly) keeps fonts and the manifest loading properly.
+Then open <http://localhost:8080>. Add `?season=spring`, `summer`, `autumn` or `winter` to preview a season; the choice lasts for that visit, and "Follow the calendar" in the picker goes back to the date. Serving it over HTTP (rather than opening `index.html` directly) keeps fonts and the manifest loading properly.
 
 To change what the site says, edit `js/config.js` (defaults) or `js/data/projects.js` (projects). To publish, push to `main`: GitHub Pages rebuilds automatically.
 

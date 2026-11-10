@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-season="autumn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,28 @@
             var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
         } catch (e) {}
+        // and the season: from today's date in the visitor's hemisphere, unless they picked one
+        // this visit (or the link says ?season=winter). js/season.js reads window.portfolioSeason.
+        (function () {
+            var ORDER = ['spring', 'summer', 'autumn', 'winter'];
+            var south = false;
+            try {
+                var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+                south = /^(Australia|Antarctica)\/|^Pacific\/(Auckland|Chatham)|^America\/(Argentina|Santiago|Sao_Paulo|Montevideo|Asuncion|Punta_Arenas)|^Africa\/(Johannesburg|Maputo|Harare|Lusaka|Windhoek|Gaborone|Maseru|Mbabane)|^Indian\/(Antananarivo|Mauritius|Reunion)|^Atlantic\/Stanley/.test(tz);
+            } catch (e) {}
+            // meteorological seasons: Mar-May spring, Jun-Aug summer, Sep-Nov autumn, Dec-Feb winter
+            var index = Math.floor(((new Date().getMonth() + 10) % 12) / 3);
+            var auto = ORDER[(index + (south ? 2 : 0)) % 4];
+            var chosen = null;
+            try {
+                var asked = new URLSearchParams(location.search).get('season');
+                if (asked) sessionStorage.setItem('portfolio-season', asked);
+                chosen = sessionStorage.getItem('portfolio-season');
+            } catch (e) {}
+            if (ORDER.indexOf(chosen) < 0) chosen = null;
+            window.portfolioSeason = { order: ORDER, auto: auto, chosen: chosen, south: south };
+            document.documentElement.setAttribute('data-season', chosen || auto);
+        })();
     </script>
 
     <!-- Google Fonts -->
@@ -35,12 +57,17 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/seasons.css">
 </head>
 <body>
     <a href="#about" class="skip-link">Skip to content</a>
 
     <!-- Scroll Progress Indicator Bar -->
     <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Seasonal motion layers: drifting colour fields and a particle canvas (js/season.js) -->
+    <div class="season-backdrop" aria-hidden="true"><span class="blob-1"></span><span class="blob-2"></span><span class="blob-3"></span></div>
+    <canvas class="season-canvas" id="season-canvas" aria-hidden="true"></canvas>
 
     <!-- Fixed Header & Navigation -->
     <header class="navbar" id="navbar">
@@ -63,13 +90,19 @@
             </nav>
 
             <div class="nav-actions">
+                <div class="season-picker" id="season-picker" hidden>
+                    <button class="season-btn" id="season-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="season-menu" aria-label="Change season">
+                        <svg aria-hidden="true"><use data-season-glyph href="#glyph-autumn"></use></svg>
+                    </button>
+                    <div class="season-menu" id="season-menu" role="menu" aria-label="Season"></div>
+                </div>
                 <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
                     <i class="fas fa-sun" id="theme-icon"></i>
                 </button>
                 <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
                     Contact Me
                 </a>
-                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -88,7 +121,7 @@
                     </div>
 
                     <h1 class="hero-title">
-                        Hi, I'm <span class="gradient-text" id="profile-name">Praise Ojerinola</span><br>
+                        <span id="hero-greet">Hi, I'm</span> <span class="gradient-text" id="profile-name">Praise Ojerinola</span><br>
                         <span class="typing-text" id="typing-text">AWS Certified Data Engineer</span>
                     </h1>
 
@@ -107,40 +140,24 @@
                             Download CV <i class="fas fa-file-arrow-down"></i>
                         </a>
                     </div>
-
-                    <div class="hero-stats" id="hero-stats-container">
-                        <div class="stat-item">
-                            <div class="stat-header">
-                                <i class="fas fa-graduation-cap stat-icon"></i>
-                                <span class="stat-number">Distinction</span>
-                            </div>
-                            <span class="stat-label">MSc Qualification</span>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-header">
-                                <i class="fab fa-aws stat-icon"></i>
-                                <span class="stat-number">DEA-C01</span>
-                            </div>
-                            <span class="stat-label">AWS Data Engineer</span>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-header">
-                                <i class="fas fa-award stat-icon"></i>
-                                <span class="stat-number">8+</span>
-                            </div>
-                            <span class="stat-label">Certifications</span>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-header">
-                                <i class="fas fa-code stat-icon"></i>
-                                <span class="stat-number">Full-Stack</span>
-                            </div>
-                            <span class="stat-label">Python • Java • PHP</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="hero-visual">
+                    <!-- seasonal scene behind the portrait: sun or moon, ring type, orbiting glyphs -->
+                    <div class="season-scene" aria-hidden="true">
+                        <div class="season-orb"></div>
+                        <svg class="season-ring" viewBox="0 0 200 200">
+                            <defs><path id="ring-path" d="M100,100 m-86,0 a86,86 0 1,1 172,0 a86,86 0 1,1 -172,0"></path></defs>
+                            <circle class="ring-dash" cx="100" cy="100" r="97"></circle>
+                            <text><textPath href="#ring-path" id="ring-text" textLength="538" lengthAdjust="spacing">Autumn edition • Data engineering • Software engineering •</textPath></text>
+                        </svg>
+                        <div class="season-orbit orbit-1"><svg class="orbit-glyph"><use data-season-glyph href="#glyph-autumn"></use></svg></div>
+                        <div class="season-orbit orbit-3"><svg class="orbit-glyph"><use data-season-glyph href="#glyph-autumn"></use></svg></div>
+                    </div>
+                    <div class="season-scene front" aria-hidden="true">
+                        <div class="season-orbit orbit-2"><svg class="orbit-glyph"><use data-season-glyph href="#glyph-autumn"></use></svg></div>
+                    </div>
+
                     <div class="avatar-wrapper">
                         <img src="assets/images/praise_portrait.jpg" alt="Praise Ojerinola" class="avatar-img" id="profile-avatar">
                     </div>
@@ -161,8 +178,45 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="hero-stats" id="hero-stats-container">
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <i class="fas fa-graduation-cap stat-icon"></i>
+                            <span class="stat-number">Distinction</span>
+                        </div>
+                        <span class="stat-label">MSc Qualification</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <i class="fab fa-aws stat-icon"></i>
+                            <span class="stat-number">DEA-C01</span>
+                        </div>
+                        <span class="stat-label">AWS Data Engineer</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <i class="fas fa-award stat-icon"></i>
+                            <span class="stat-number">8+</span>
+                        </div>
+                        <span class="stat-label">Certifications</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <i class="fas fa-code stat-icon"></i>
+                            <span class="stat-number">Full-Stack</span>
+                        </div>
+                        <span class="stat-label">Python • Java • PHP</span>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Crossed marquee tapes: skills on the front tape, the season on the back (js/season.js fills them) -->
+        <div class="tapes" aria-hidden="true">
+            <div class="tape tape-back"><div class="tape-track" id="tape-back"></div></div>
+            <div class="tape tape-front"><div class="tape-track" id="tape-front"></div></div>
+        </div>
 
         <!-- About Me Section -->
         <section id="about">
@@ -400,6 +454,7 @@
         <div class="container footer-container">
             <div class="footer-text">
                 © <span id="current-year">2026</span> <span id="footer-name">Praise Ojerinola</span>. <span id="footer-title">AWS Certified Data Engineer & Software Engineer</span>. All rights reserved.
+                <br><span class="season-note" id="season-note"></span>
             </div>
 
             <a href="#hero" class="back-to-top" aria-label="Back to top">
@@ -431,6 +486,7 @@
     <script src="js/data/projects.js"></script>
     <script src="js/data/cv.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/season.js"></script>
     <script src="js/scroll.js"></script>
 </body>
 </html>
