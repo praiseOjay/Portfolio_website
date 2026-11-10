@@ -11,34 +11,39 @@
    Each block sets the same variables in light and dark, so the dark block (more
    specific) always wins in dark mode. The second selector in each dark rule lets any
    element carry its own season (the picker options and the transition wipe do). */
+/* spring: cherry blossom. Rose to orchid, one pink family, with a blush dawn sun */
 [data-season="spring"] {
-    --paper: #f6efec; --surface: #fdf8f6; --surface-2: #efe3df;
-    --accent: #b3255a; --accent-ink: #ffffff; --accent-2: #3d7a1f;
+    --paper: #f8f0f1; --surface: #fef9f9; --surface-2: #f1e3e6;
+    --accent: #b3255a; --accent-ink: #ffffff; --accent-2: #8a2f9e;
     --accent-soft: rgba(179, 37, 90, 0.1);
-    --orb-a: #ffe3ec; --orb-b: #f28cae; --ray-step: 36deg; --ray-width: 14deg; --ray-opacity: .35;
-    --p1: #f49ab9; --p2: #e9719b; --p3: #fbc6d7;
+    --orb-a: #fff3f7; --orb-b: #f28fb3; --ray-step: 30deg; --ray-width: 13deg; --ray-opacity: .45;
+    --p1: #f4a3bf; --p2: #e9779f; --p3: #f8c4d6;
 }
 [data-theme="dark"][data-season="spring"], [data-theme="dark"] [data-season="spring"] {
-    --paper: #141012; --surface: #1c1619; --surface-2: #271e22;
-    --accent: #ff8fb3; --accent-ink: #1a0f14; --accent-2: #a5dc74;
+    --paper: #151013; --surface: #1d1619; --surface-2: #281e23;
+    --accent: #ff8fb3; --accent-ink: #1a0f14; --accent-2: #d9a6ff;
     --accent-soft: rgba(255, 143, 179, 0.13);
-    --orb-a: #ffd2e0; --orb-b: #c2477a; --ray-step: 36deg; --ray-width: 14deg; --ray-opacity: .3;
+    --orb-a: #ffe0ea; --orb-b: #d4558b; --ray-step: 30deg; --ray-width: 13deg; --ray-opacity: .4;
     --p1: #ffb3cb; --p2: #f78fb0; --p3: #ffd9e5;
 }
 
+/* summer: full sun. Gold to amber on lemon paper, a blazing sun and glinting light */
 [data-season="summer"] {
-    --paper: #f5f0e1; --surface: #fcf9ef; --surface-2: #ece4cc;
-    --accent: #0b6b74; --accent-ink: #ffffff; --accent-2: #a94e05;
-    --accent-soft: rgba(11, 107, 116, 0.1);
-    --orb-a: #fff2b8; --orb-b: #f5a300; --ray-step: 15deg; --ray-width: 5deg; --ray-opacity: .75;
-    --p1: #f2b705; --p2: #f59e0b; --p3: #ffd65a;
+    --paper: #fbf5e1; --surface: #fffbee; --surface-2: #f3e8c6;
+    --accent: #865c00; --accent-ink: #ffffff; --accent-2: #b24a00;
+    --accent-soft: rgba(214, 150, 0, 0.14);
+    --orb-a: #fffbe0; --orb-b: #ffb703; --ray-step: 12deg; --ray-width: 4.5deg; --ray-opacity: .85;
+    --p1: #f2a900; --p2: #ffbf1f; --p3: #e07b00;
+    /* the hero name is large text (3:1 needed), so it can shine brighter than small ochre text */
+    --display: #ba7a00; --display-2: #c26a00;
 }
 [data-theme="dark"][data-season="summer"], [data-theme="dark"] [data-season="summer"] {
-    --paper: #0f1213; --surface: #161b1c; --surface-2: #1f2627;
-    --accent: #3fd6c6; --accent-ink: #0a1414; --accent-2: #ffc23d;
-    --accent-soft: rgba(63, 214, 198, 0.12);
-    --orb-a: #fff1b0; --orb-b: #ff9d2e; --ray-step: 15deg; --ray-width: 5deg; --ray-opacity: .6;
+    --paper: #14110a; --surface: #1c1810; --surface-2: #272116;
+    --accent: #ffc83d; --accent-ink: #17120a; --accent-2: #ffe387;
+    --accent-soft: rgba(255, 200, 61, 0.12);
+    --orb-a: #fffbe0; --orb-b: #ffaa00; --ray-step: 12deg; --ray-width: 4.5deg; --ray-opacity: .75;
     --p1: #ffd45a; --p2: #ffb02e; --p3: #fff1a8;
+    --display: #ffc83d; --display-2: #ffe387;
 }
 
 [data-season="autumn"] {
@@ -56,18 +61,19 @@
     --p1: #ff7a45; --p2: #ffb648; --p3: #d9481f;
 }
 
+/* winter: frost. Blue to violet on cold paper, a cratered moon and real snow */
 [data-season="winter"] {
-    --paper: #edf1f5; --surface: #f8fafc; --surface-2: #e0e7ef;
+    --paper: #eef2f7; --surface: #f9fbfd; --surface-2: #e1e8f1;
     --accent: #1f4fbf; --accent-ink: #ffffff; --accent-2: #5a43b5;
     --accent-soft: rgba(31, 79, 191, 0.09);
-    --orb-a: #ffffff; --orb-b: #b9cbe4; --ray-step: 10deg; --ray-width: 1.5deg; --ray-opacity: .5;
-    --p1: #9fb6d6; --p2: #c4d3e8; --p3: #7f9cc6;
+    --orb-a: #ffffff; --orb-b: #aec3e3; --ray-step: 7.5deg; --ray-width: 1.2deg; --ray-opacity: .55;
+    --p1: #ffffff; --p2: #e8f0fb; --p3: #cddcf0;
 }
 [data-theme="dark"][data-season="winter"], [data-theme="dark"] [data-season="winter"] {
-    --paper: #0d1117; --surface: #141a22; --surface-2: #1c2430;
+    --paper: #0c1119; --surface: #131a24; --surface-2: #1b2430;
     --accent: #8cc4ff; --accent-ink: #0b1220; --accent-2: #c3b3ff;
     --accent-soft: rgba(140, 196, 255, 0.12);
-    --orb-a: #f4f8ff; --orb-b: #6f8bb8; --ray-step: 10deg; --ray-width: 1.5deg; --ray-opacity: .35;
+    --orb-a: #f4f8ff; --orb-b: #7d97c2; --ray-step: 7.5deg; --ray-width: 1.2deg; --ray-opacity: .4;
     --p1: #ffffff; --p2: #dbe8ff; --p3: #b9d2f5;
 }
 
@@ -116,6 +122,28 @@
 }
 @keyframes orb-float { 50% { transform: translate(-6%, 8%) scale(1.04); } }
 
+/* each season's sun or moon moves in its own way */
+[data-season="summer"] .season-orb { box-shadow: 0 0 120px 10px color-mix(in srgb, var(--orb-b) 55%, transparent); }
+[data-season="summer"] .season-orb::before { inset: -55%; animation: spin 26s linear infinite, ray-pulse 3.6s ease-in-out infinite; }
+@keyframes ray-pulse { 50% { scale: 1.08; opacity: calc(var(--ray-opacity) * .7); } }
+[data-season="spring"] .season-orb::before { animation-duration: 70s; }
+[data-season="spring"] .season-orb::after {   /* a halo of blossom light */
+    content: ""; position: absolute; inset: -14%; border-radius: 50%;
+    background: radial-gradient(circle, transparent 54%, color-mix(in srgb, var(--orb-b) 30%, transparent) 62%, transparent 72%);
+    animation: halo 6s ease-in-out infinite;
+}
+@keyframes halo { 50% { transform: scale(1.12); opacity: .5; } }
+[data-season="winter"] .season-orb { animation-duration: 14s; box-shadow: 0 0 70px color-mix(in srgb, var(--orb-b) 60%, transparent), inset -14px -10px 30px color-mix(in srgb, var(--orb-b) 70%, transparent); }
+[data-season="winter"] .season-orb::after {   /* craters */
+    content: ""; position: absolute; inset: 0; border-radius: 50%; opacity: .55;
+    background:
+        radial-gradient(circle at 30% 38%, color-mix(in srgb, var(--orb-b) 80%, #000 6%) 0 7%, transparent 8%),
+        radial-gradient(circle at 58% 62%, color-mix(in srgb, var(--orb-b) 80%, #000 6%) 0 10%, transparent 11%),
+        radial-gradient(circle at 66% 30%, color-mix(in srgb, var(--orb-b) 80%, #000 6%) 0 5%, transparent 6%),
+        radial-gradient(circle at 38% 74%, color-mix(in srgb, var(--orb-b) 80%, #000 6%) 0 4%, transparent 5%);
+}
+[data-season="winter"] .season-orb::before { animation-duration: 90s; }
+
 .season-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: spin 38s linear infinite; }
 .season-ring text { font-family: var(--font-mono); font-size: 8.4px; font-weight: 700; letter-spacing: .12em; fill: var(--ink); text-transform: uppercase; }
 .season-ring .ring-dash { fill: none; stroke: var(--accent); stroke-width: .8; stroke-dasharray: 2 5; }
@@ -144,7 +172,9 @@
     animation-delay: calc(var(--i) * 34ms + 120ms), calc(var(--i) * 110ms + 1.4s);
 }
 @keyframes char-in { from { opacity: 0; transform: translateY(.55em) rotate(10deg) scale(.86); } }
-@keyframes char-wave { 0%, 40%, 100% { color: var(--accent); translate: 0 0; } 20% { color: var(--accent-2); translate: 0 -.06em; } }
+@keyframes char-wave { 0%, 40%, 100% { color: var(--display, var(--accent)); translate: 0 0; } 20% { color: var(--display-2, var(--accent-2)); translate: 0 -.06em; } }
+#profile-name { color: var(--display, var(--accent)); }
+[data-season="summer"] .avatar-wrapper::before { background: var(--orb-b); }
 
 .typing-text { border-bottom-color: var(--accent); }
 .typing-text::after { content: ""; display: inline-block; width: .55em; height: 2px; margin-left: 2px; background: var(--accent-2); vertical-align: .15em; animation: caret 1s steps(1) infinite; }
@@ -172,6 +202,8 @@
 .tape-back .tape-item svg { color: var(--accent-ink); }
 .tape-front .tape-item:nth-child(even) { font-style: italic; color: color-mix(in srgb, var(--paper) 75%, var(--accent)); }
 @keyframes tape-run { to { transform: translateX(-50%); } }
+[data-season="summer"] .tape-back, [data-season="summer"] .tape-back .tape-item svg { background-color: var(--orb-b); color: #1f1606; }
+[data-season="summer"] .tape-back .tape-item svg { background-color: transparent; }
 
 /* ---- 6. Season picker in the navigation ----------------------------------- */
 .season-picker { position: relative; }
@@ -216,7 +248,7 @@
 
 /* ---- 8. Calm versions ----------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-    .season-backdrop span, .season-orb, .season-orb::before, .season-ring, .season-orbit, .orbit-glyph,
+    .season-backdrop span, .season-orb, .season-orb::before, .season-orb::after, .season-ring, .season-orbit, .orbit-glyph,
     .avatar-wrapper, .floating-badge, .tag-glyph, .tape-track, .typing-text::after { animation: none !important; }
     .tape-track { transform: none; }
 }

@@ -4,7 +4,7 @@
 [![AWS Certified Data Engineer](https://img.shields.io/badge/AWS-Certified%20Data%20Engineer%20Associate-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://www.credly.com/badges/53369df2-187c-4b08-9ed8-18911445242d/public_url)
 [![License: MIT](https://img.shields.io/badge/License-MIT-15120F.svg?style=for-the-badge)](LICENSE)
 
-A personal portfolio built with plain HTML, CSS and JavaScript: no framework and no build step. It is a motion-graphics page that **changes with the seasons**: spring blossom, summer sun and fireflies, autumn leaves and winter snow, each with its own palette in light and dark. Content reveals as you scroll, and the layout is tuned for screens from a 320 px phone up to a 4K monitor.
+A personal portfolio built with plain HTML, CSS and JavaScript: no framework and no build step. It is a motion-graphics page that **changes with the seasons**: cherry blossom in spring, blazing sun and glinting light in summer, falling leaves in autumn and snow under a cratered moon in winter. Each season keeps to one colour family, in light and dark. Content reveals as you scroll, and the layout is tuned for screens from a 320 px phone up to a 4K monitor.
 
 **Live:** <https://praiseojay.github.io/Portfolio_website/>
 
@@ -18,7 +18,7 @@ A personal portfolio built with plain HTML, CSS and JavaScript: no framework and
 ### Hero (autumn, light)
 ![Hero preview](assets/images/screenshot_hero.png)
 
-### Hero (winter, dark)
+### Hero (spring, dark)
 ![Dark theme preview](assets/images/screenshot_dark.png)
 
 ### Projects and case studies
@@ -41,7 +41,7 @@ A personal portfolio built with plain HTML, CSS and JavaScript: no framework and
 
 ## ✨ Features
 
-- **Seasonal motion graphics:** the page picks the season from today's date, in the visitor's own hemisphere (worked out from their time zone, so Sydney gets summer in December). Each season brings its own palette, a particle canvas (tumbling blossom petals, rising fireflies, gusting maple and oak leaves, snow in three depths), drifting colour fields, a sun or moon with turning rays behind the portrait, rotating ring type, orbiting glyphs and crossed marquee tapes. Scrolling stirs up the wind and gives the particles depth, and a mouse pushes them aside. A picker in the navigation previews any season with a colour wipe, and `?season=winter` in the link does the same (`js/season.js`, `css/seasons.css`).
+- **Seasonal motion graphics:** the page picks the season from today's date, in the visitor's own hemisphere (worked out from their time zone, so Sydney gets summer in December). Each season keeps to one colour family (rose to orchid, sun gold to amber, rust to amber, blue to violet) and brings a particle canvas (petals and whole cherry blossoms, rising fireflies and twinkling sun glints, gusting maple and oak leaves, snow and crystals in three depths), drifting colour fields, a sun or moon with turning rays behind the portrait, rotating ring type, orbiting glyphs and crossed marquee tapes. Scrolling stirs up the wind and gives the particles depth, and a mouse pushes them aside. A picker in the navigation previews any season with a colour wipe, and `?season=winter` in the link does the same (`js/season.js`, `css/seasons.css`).
 - **Scroll-triggered page:** sections and cards reveal as they enter the screen, the hero drifts as you scroll, stats count up, the experience line draws itself, and a side rail shows which section you are in. Everything simply shows, with no motion, for visitors who prefer reduced motion (`js/scroll.js`).
 - **Light and dark themes:** follows the visitor's system setting on first visit and remembers their choice. The theme is set before the page paints, so there is no flash.
 - **Mobile-friendly, with breakpoints for every screen:** checked with no sideways scrolling at every width from 320 px to 2560 px, including phones on their side. Breakpoints:

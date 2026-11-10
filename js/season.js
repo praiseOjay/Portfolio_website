@@ -172,12 +172,13 @@
         if (!ctx || typeof Path2D === 'undefined') return { setSeason() {}, recolor() {}, motion() {} };
 
         const KIND = { spring: 'petal', summer: 'mote', autumn: 'leaf', winter: 'snow' };
-        const DENSITY = { petal: 16000, mote: 20000, leaf: 26000, snow: 9500 };   // screen pixels per particle
-        const LIMITS = { petal: [14, 66], mote: [12, 54], leaf: [10, 40], snow: [26, 130] };
+        const DENSITY = { petal: 17000, mote: 18000, leaf: 26000, snow: 9000 };   // screen pixels per particle
+        const LIMITS = { petal: [14, 60], mote: [14, 60], leaf: [10, 40], snow: [28, 130] };
         const lowPower = (navigator.connection && navigator.connection.saveData) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
         const finePointer = window.matchMedia('(pointer: fine)').matches;
         const PETAL = new Path2D(PETAL_D);
         const MAPLE = new Path2D(MAPLE_D);
+        const GLINT = new Path2D('M12 1C12.7 9 15 11.3 23 12 15 12.7 12.7 15 12 23 11.3 15 9 12.7 1 12 9 11.3 11.3 9 12 1z');
         const OAK = new Path2D('M12 2.5C17 6.5 17.6 13.5 12 21.5 6.4 13.5 7 6.5 12 2.5z');
 
         let W = 0, H = 0, dpr = 1, kind = 'leaf';
@@ -209,12 +210,21 @@
             const main = [], alt = [];
             colors.forEach((col) => {
                 if (kind === 'petal') {
-                    main.push(sprite(34, (g) => {
-                        g.translate(12, 12); g.scale(2.3, 2.3); g.translate(-12, -7.4);
+                    // single petals, plus whole five-petal blossoms that spin as they fall
+                    const petal = (g) => {
                         const grad = g.createLinearGradient(12, 11.5, 12, 3.3);
-                        grad.addColorStop(0, col); grad.addColorStop(1, rgba('#ffffff', dark() ? 0.85 : 0.6));
+                        grad.addColorStop(0, col); grad.addColorStop(1, rgba('#ffffff', dark() ? 0.85 : 0.65));
                         g.fillStyle = col; g.fill(PETAL);
-                        g.globalAlpha = 0.55; g.fillStyle = grad; g.fill(PETAL);
+                        g.save(); g.globalAlpha = 0.6; g.fillStyle = grad; g.fill(PETAL); g.restore();
+                        if (!dark()) { g.strokeStyle = 'rgba(160, 30, 80, .32)'; g.lineWidth = 0.35; g.stroke(PETAL); }
+                    };
+                    main.push(sprite(36, (g) => { g.translate(12, 12); g.scale(2.3, 2.3); g.translate(-12, -7.4); petal(g); }));
+                    alt.push(sprite(40, (g) => {
+                        g.translate(12, 12); g.scale(1.12, 1.12);
+                        for (let k = 0; k < 5; k++) { g.save(); g.rotate((k * 2 * Math.PI) / 5); g.translate(-12, -12); petal(g); g.restore(); }
+                        g.fillStyle = dark() ? '#ffe08a' : '#e0a21a';
+                        for (let k = 0; k < 5; k++) { const a = (k * 2 * Math.PI) / 5 + 0.6; g.beginPath(); g.arc(Math.sin(a) * 2.6, -Math.cos(a) * 2.6, 0.75, 0, Math.PI * 2); g.fill(); }
+                        g.fillStyle = rgba(cssVar('--p2') || col, 1); g.beginPath(); g.arc(0, 0, 1.5, 0, Math.PI * 2); g.fill();
                     }));
                 } else if (kind === 'leaf') {
                     const veins = (g, pts) => {
@@ -230,26 +240,46 @@
                         veins(g, [[12, 4, 12, 21], [12, 9, 15, 7], [12, 9, 9, 7], [12, 13, 15.6, 11], [12, 13, 8.4, 11], [12, 17, 14.6, 15.4], [12, 17, 9.4, 15.4]]);
                     }));
                 } else if (kind === 'snow') {
-                    main.push(sprite(18, (g) => {
+                    // on light paper white snow needs a cold blue rim to be seen
+                    const frost = dark() ? null : 'rgba(70, 105, 160, .5)';
+                    main.push(sprite(20, (g) => {
                         const r = g.createRadialGradient(12, 12, 0, 12, 12, 12);
-                        r.addColorStop(0, rgba(col, 1)); r.addColorStop(0.4, rgba(col, 0.9)); r.addColorStop(1, rgba(col, 0));
+                        r.addColorStop(0, rgba(col, 1)); r.addColorStop(0.45, rgba(col, 0.95));
+                        if (frost) { r.addColorStop(0.62, 'rgba(110, 140, 190, .55)'); r.addColorStop(1, 'rgba(110, 140, 190, 0)'); }
+                        else r.addColorStop(1, rgba(col, 0));
                         g.fillStyle = r; g.fillRect(0, 0, 24, 24);
                     }));
-                    alt.push(sprite(30, (g) => {
-                        g.strokeStyle = col; g.lineWidth = 1.5; g.lineCap = 'round';
-                        g.translate(12, 12);
-                        for (let k = 0; k < 6; k++) {
-                            g.beginPath(); g.moveTo(0, 0); g.lineTo(0, -10);
-                            g.moveTo(-2.6, -7.6); g.lineTo(0, -5.4); g.lineTo(2.6, -7.6);
-                            g.stroke(); g.rotate(Math.PI / 3);
-                        }
+                    alt.push(sprite(34, (g) => {
+                        const arms = (width, colour) => {
+                            g.save(); g.translate(12, 12); g.strokeStyle = colour; g.lineWidth = width; g.lineCap = 'round'; g.lineJoin = 'round';
+                            for (let k = 0; k < 6; k++) {
+                                g.beginPath(); g.moveTo(0, 0); g.lineTo(0, -10.2);
+                                g.moveTo(-2.8, -8); g.lineTo(0, -5.6); g.lineTo(2.8, -8);
+                                g.moveTo(-1.8, -4.4); g.lineTo(0, -3); g.lineTo(1.8, -4.4);
+                                g.stroke(); g.rotate(Math.PI / 3);
+                            }
+                            g.restore();
+                        };
+                        if (frost) arms(3, frost);
+                        else { g.shadowColor = rgba(col, 0.9); g.shadowBlur = 3; }
+                        arms(1.4, col);
                     }));
                 } else {
-                    main.push(sprite(30, (g) => {
+                    // fireflies and sun motes, plus four-point glints of sunlight that twinkle
+                    const core = dark() ? '#fffbe6' : (cssVar('--p3') || col);
+                    main.push(sprite(32, (g) => {
                         const r = g.createRadialGradient(12, 12, 0, 12, 12, 12);
-                        r.addColorStop(0, rgba(cssVar('--p3') || col, 1)); r.addColorStop(0.22, rgba(col, 0.9));
-                        r.addColorStop(0.5, rgba(col, 0.25)); r.addColorStop(1, rgba(col, 0));
+                        r.addColorStop(0, rgba(core, 1)); r.addColorStop(0.22, rgba(col, dark() ? 0.9 : 1));
+                        r.addColorStop(0.5, rgba(col, dark() ? 0.25 : 0.4)); r.addColorStop(1, rgba(col, 0));
                         g.fillStyle = r; g.fillRect(0, 0, 24, 24);
+                    }));
+                    alt.push(sprite(36, (g) => {
+                        const halo = g.createRadialGradient(12, 12, 0, 12, 12, 9);
+                        halo.addColorStop(0, rgba(col, dark() ? 0.55 : 0.4)); halo.addColorStop(1, rgba(col, 0));
+                        g.fillStyle = halo; g.fillRect(0, 0, 24, 24);
+                        const r = g.createRadialGradient(12, 12, 0, 12, 12, 11);
+                        r.addColorStop(0, dark() ? '#ffffff' : rgba(core, 1)); r.addColorStop(0.35, rgba(col, 1)); r.addColorStop(1, rgba(col, 0.6));
+                        g.fillStyle = r; g.fill(GLINT);
                     }));
                 }
             });
@@ -263,19 +293,22 @@
             p.rot = rnd(0, Math.PI * 2); p.flip = rnd(0, Math.PI * 2); p.seed = rnd(0, 1000);
             p.px = 0; p.py = 0; p.flipSpeed = 0; p.vr = 0; p.tw = 0;
             if (kind === 'petal') {
-                p.size = rnd(12, 22) * (0.45 + z * 0.55); p.vy = rnd(0.35, 0.8) * z; p.vx = rnd(0.1, 0.45) * z;
-                p.vr = rnd(-0.015, 0.015); p.flipSpeed = rnd(0.015, 0.045); p.sway = rnd(8, 22); p.swayF = rnd(0.012, 0.025); p.alpha = 0.5 + z * 0.45;
+                p.alt = Math.random() < 0.22;
+                p.size = (p.alt ? rnd(20, 32) : rnd(14, 26)) * (0.45 + z * 0.55); p.vy = rnd(0.35, 0.8) * z; p.vx = rnd(0.15, 0.5) * z;
+                p.vr = p.alt ? rnd(-0.03, 0.03) : rnd(-0.015, 0.015); p.flipSpeed = p.alt ? rnd(0.008, 0.02) : rnd(0.02, 0.05); p.sway = rnd(8, 22); p.swayF = rnd(0.012, 0.025); p.alpha = 0.5 + z * 0.45;
             } else if (kind === 'leaf') {
                 p.alt = Math.random() < 0.4;
                 p.size = rnd(20, 34) * (0.45 + z * 0.55); p.vy = rnd(0.55, 1.2) * z; p.vx = rnd(-0.2, 0.2);
                 p.vr = rnd(-0.03, 0.03); p.flipSpeed = rnd(0.01, 0.04); p.sway = rnd(14, 34); p.swayF = rnd(0.008, 0.018); p.alpha = 0.55 + z * 0.4;
             } else if (kind === 'snow') {
-                p.alt = z > 0.78 && Math.random() < 0.35;
-                p.size = p.alt ? rnd(12, 20) * z : rnd(3, 8) * z; p.vy = rnd(0.45, 1.05) * z * 1.3; p.vx = 0;
+                p.alt = z > 0.7 && Math.random() < 0.4;
+                p.size = p.alt ? rnd(15, 26) * z : rnd(4, 10) * z; p.vy = rnd(0.45, 1.05) * z * 1.3; p.vx = 0;
                 p.vr = p.alt ? rnd(-0.01, 0.01) : 0; p.sway = rnd(4, 14); p.swayF = rnd(0.006, 0.014); p.alpha = 0.45 + z * 0.55;
             } else {
-                p.size = rnd(8, 22) * z; p.vy = -rnd(0.08, 0.32) * z; p.vx = rnd(-0.12, 0.12);
-                p.sway = rnd(10, 30); p.swayF = rnd(0.004, 0.012); p.alpha = 0.35 + z * 0.55; p.tw = rnd(0.02, 0.06);
+                p.alt = Math.random() < 0.35;
+                p.size = (p.alt ? rnd(16, 30) : rnd(10, 26)) * z; p.vy = -rnd(0.08, 0.32) * z; p.vx = rnd(-0.12, 0.12);
+                p.sway = rnd(10, 30); p.swayF = rnd(0.004, 0.012); p.alpha = 0.45 + z * 0.55; p.tw = rnd(0.02, 0.06);
+                if (p.alt) { p.vr = rnd(-0.006, 0.006); p.vy *= 0.5; p.alpha = 0.75 + z * 0.25; }
             }
             const m = p.size + 30;
             p.x = rnd(0, W);
@@ -324,14 +357,18 @@
                 const pool = p.alt && sprites.alt.length ? sprites.alt : sprites.main;
                 const img = pool[p.si % pool.length];
                 if (!img) continue;
-                let a = p.alpha;
-                if (p.tw) a *= 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(t * p.tw + p.seed));
+                let a = p.alpha, size = p.size;
+                if (p.tw) {
+                    const wave = 0.5 + 0.5 * Math.sin(t * p.tw + p.seed);
+                    if (kind === 'mote' && p.alt) size *= 0.35 + 0.65 * wave * wave;   // glints flare and fade
+                    else a *= 0.45 + 0.55 * wave;
+                }
                 let fy = 1;
                 if (p.flipSpeed) { fy = Math.cos(p.flip); if (Math.abs(fy) < 0.12) fy = fy < 0 ? -0.12 : 0.12; }
-                const c = Math.cos(p.rot) * dpr, s = Math.sin(p.rot) * dpr, half = p.size / 2;
+                const c = Math.cos(p.rot) * dpr, s = Math.sin(p.rot) * dpr, half = size / 2;
                 ctx.setTransform(c, s, -s * fy, c * fy, (sx + p.px) * dpr, (p.y + p.py) * dpr);
                 ctx.globalAlpha = a;
-                ctx.drawImage(img, -half, -half, p.size, p.size);
+                ctx.drawImage(img, -half, -half, size, size);
             }
             ctx.globalAlpha = 1;
         }
